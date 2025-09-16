@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos - Acero JJ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="imagenes/logo jj.png" alt="Logo Acero JJ" style="height: 40px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="productos.html">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sobre-nosotros.html">Sobre Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacto.html">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pedidos.html">Hacer Pedido</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="catalogo_nuevo.html">Catálogo</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <button class="btn btn-primary position-relative" id="cart-button" data-bs-toggle="modal" data-bs-target="#cartModal">
+                                <i class="bi bi-cart"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">0</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5">
+        <section id="catalogo">
+            <h2 class="text-center mb-4">Catálogo de Productos</h2>
+            <p class="text-center text-muted mb-5">Nota: Los precios y descripciones son ejemplos y pueden no reflejar los valores reales.</p>
+            
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4" id="product-list">
+                <!-- Los productos se cargarán aquí dinámicamente -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal del Carrito -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Carrito de Compras</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="cart-body">
+                    <!-- Contenido del carrito se insertará aquí -->
+                </div>
+                <div class="modal-footer">
+                    <h5 class="me-auto">Total: <span id="cart-total">$0.00</span> COP</h5>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir Comprando</button>
+                    <a href="pedido.html" class="btn btn-success">Proceder al Pago</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center p-3 mt-5">
+        <p>&copy; 2025 Acero JJ. Todos los derechos reservados. | <a href="catalogo_nuevo.html" class="text-light">Catálogo de Productos</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM cargado y listo.');
+            const products = [
+                { id: 1, name: 'Varilla Corrugada', price: 85000, image: 'imagen9.jpeg', description: 'Varilla de acero corrugado para refuerzo de concreto.', sizes: ['3/8" x 6m', '1/2" x 6m', '5/8" x 6m'] },
+                { id: 2, name: 'Perfil IPR (Viga)', price: 350000, image: 'magen15.jpeg', description: 'Viga de acero tipo IPR, ideal para estructuras metálicas.', sizes: ['8" x 6m', '10" x 6m', '12" x 12m'] },
+                { id: 3, name: 'Perfil IPS (Viga)', price: 320000, image: 'magen16.jpeg', description: 'Viga de acero tipo IPS, utilizada en puentes y edificios.', sizes: ['6" x 6m', '8" x 6m'] },
+                { id: 4, name: 'Canal Monten', price: 120000, image: 'canal-monten.jpeg', description: 'Perfil estructural tipo Monten, para techos y cubiertas.', sizes: ['4"', '6"', '8"'] },
+                { id: 5, name: 'Ángulo de Acero', price: 60000, image: 'angulo.jpeg', description: 'Ángulo de lados iguales de acero, versátil para fabricación de estructuras metálicas.', sizes: ['1" x 1/8"', '2" x 1/4"'] },
+                { id: 6, name: 'Solera de Acero', price: 45000, image: 'magen17.jpeg', description: 'Placa rectangular de acero, utilizada para refuerzos y uniones.', sizes: ['1" x 1/8"', '2" x 1/4"'] },
+                { id: 7, name: 'Tubo Cédula 40', price: 180000, image: 'tubos.jpeg', description: 'Tubo de acero al carbono con cédula 40.', sizes: ['1/2"', '3/4"', '1"'] },
+                { id: 8, name: 'Tubo Cédula 30', price: 150000, image: 'tubo2.jpeg', description: 'Tubo de acero al carbono con cédula 30, para aplicaciones de baja presión.', sizes: ['1/2"', '3/4"', '1"'] },
+                { id: 9, name: 'PTR (Perfil Tubular Rectangular)', price: 95000, image: 'ptr.jpeg', description: 'Perfil tubular rectangular de acero, para barandales, marcos y otras estructuras.', sizes: ['1" x 1"', '2" x 1"', '2" x 2"'] },
+                { id: 10, name: 'Polín Monten', price: 75000, image: 'ptin.jpeg', description: 'Perfil delgado de acero galvanizado, usado en cubiertas y fachadas ligeras.', sizes: ['4"', '6"', '8"'] },
+                { id: 11, name: 'Lámina Negra', price: 250000, image: 'imag2.jpeg', description: 'Lámina de acero rolada en caliente sin decapar.', sizes: ['Calibre 18 (1.2mm)', 'Calibre 16 (1.5mm)', 'Calibre 14 (1.9mm)'] },
+                { id: 12, name: 'Lámina Galvanizada', price: 300000, image: 'imag3.jpeg', description: 'Lámina de acero recubierta con zinc para protegerla.', sizes: ['Calibre 24 (0.56mm)', 'Calibre 22 (0.71mm)'] },
+                { id: 13, name: 'Lámina Antiderrapante', price: 450000, image: 'imag4.jpeg', description: 'Lámina de acero con patrón en relieve para evitar deslizamientos, ideal para pisos y plataformas.', sizes: ['Calibre 14', 'Calibre 12'] },
+                { id: 14, name: 'Malla Electrosoldada', price: 120000, image: 'imag5.jpeg', description: 'Malla de alambres de acero soldados para refuerzo de concreto en pisos y muros.', sizes: ['6x6 / 10-10', '6x6 / 8-8'] },
+                { id: 15, name: 'Alambre Recocido', price: 5000, image: 'imag6.jpeg', description: 'Alambre de acero con tratamiento térmico que le da mayor ductilidad, para amarres en construcción.' },
+                { id: 16, name: 'Alambrón', price: 4500, image: 'imag7.jpeg', description: 'Barra de acero de sección circular y superficie lisa, materia prima para trefilación.' },
+                { id: 17, name: 'Castillo Electrosoldado', price: 90000, image: 'imag8.jpeg', description: 'Armadura prefabricada para elementos de concreto como castillos y dalas.', sizes: ['10x10 cm', '15x15 cm'] },
+                { id: 18, name: 'Placa de Acero', price: 600000, image: 'imag9.jpeg', description: 'Placa de acero de diferentes espesores para uso industrial y estructural.', sizes: ['1/4"', '3/8"', '1/2"'] },
+                { id: 19, name: 'Viga HSS', price: 400000, image: 'vigas.jpeg', description: 'Perfil tubular estructural hueco (Hollow Structural Section), de alta resistencia.', sizes: ['4x4"', '6x6"'] },
+                { id: 20, name: 'Redondo de Acero', price: 30000, image: 'imag10.jpeg', description: 'Barra de acero de sección circular, para herrería y estructuras menores.', sizes: ['1/4"', '3/8"', '1/2"'] },
+                { id: 21, name: 'Cemento Gris', price: 28000, image: 'cemento.jpeg', description: 'Cemento Portland de uso general para construcción. Bulto de 50kg.' },
+                { id: 22, name: 'Mortero', price: 25000, image: 'mortero.jpeg', description: 'Mezcla de cemento, arena y agua, para pegar ladrillos y recubrir muros. Bulto de 50kg.' },
+                { id: 23, name: 'Yeso', price: 20000, image: 'yeso.jpeg', description: 'Material de construcción para acabados interiores y fabricación de paneles. Bulto de 40kg.' },
+                { id: 24, name: 'Cal', price: 15000, image: 'cal.webp', description: 'Utilizada en mezclas de albañilería para mejorar la trabajabilidad. Bulto de 20kg.' },
+                { id: 25, name: 'Arena', price: 150000, image: 'arena.jpeg', description: 'Agregado fino para mezclas de concreto y mortero.' },
+                { id: 26, name: 'Grava', price: 160000, image: 'grava.jpeg', description: 'Agregado grueso para mezclas de concreto.' },
+                { id: 27, name: 'Ladrillo Rojo', price: 800, image: 'ladrillo.jpeg', description: 'Ladrillo de arcilla cocida para construcción de muros.' },
+                { id: 28, name: 'Block de Concreto', price: 3500, image: 'ladrillo2.jpeg', description: 'Bloque de concreto para mampostería estructural o divisoria.' },
+                { id: 29, name: 'Adhesivo para Azulejo', price: 35000, image: 'add.jpeg', description: 'Mortero adhesivo para la instalación de recubrimientos cerámicos. Bulto de 20kg.' },
+                { id: 30, name: 'Impermeabilizante', price: 120000, image: 'ante.jpeg', description: 'Producto para proteger superficies de la humedad y filtraciones. Cubeta de 19L.' },
+                { id: 31, name: 'Tubería de PVC', price: 15000, image: 'tubo2.png', description: 'Tubo de policloruro de vinilo para instalaciones sanitarias y eléctricas.', sizes: ['1/2"', '3/4"', '1"'] },
+                { id: 32, name: 'Tubería de Cobre', price: 45000, image: 'tubo3.jpeg', description: 'Tubo de cobre para instalaciones de gas y agua potable.', sizes: ['1/2"', '3/4"', '1"'] },
+                { id: 33, name: 'Panel de Yeso (Tablaroca)', price: 40000, image: 'panel.jpg', description: 'Panel para construcción de muros y plafones interiores.', sizes: ['1.22m x 2.44m'] },
+                { id: 34, name: 'Aislante Térmico', price: 25000, image: 'ais.jpeg', description: 'Material para reducir la transferencia de calor en techos y muros.' },
+                { id: 35, name: 'Clavos para Concreto', price: 15000, image: 'clavos.jpeg', description: 'Clavos de acero endurecido para fijar elementos en concreto.' },
+                { id: 36, name: 'Baldosas', price: 45000, image: 'balosas.jpeg', description: 'Baldosas de cerámica para pisos y muros.', sizes: ['30x30 cm', '45x45 cm', '60x60 cm'] },
+                { id: 37, name: 'Bloques Rojos', price: 1200, image: 'ladrillo.jpeg', description: 'Bloques de arcilla cocida para construcción de muros.', sizes: ['10x20x40 cm', '12x20x40 cm'] }
+            ];
+
+            const productList = document.getElementById('product-list');
+            const cartCount = document.getElementById('cart-count');
+            const cartBody = document.getElementById('cart-body');
+            const cartTotal = document.getElementById('cart-total');
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            function saveCart() {
+                localStorage.setItem('cart', JSON.stringify(cart));
+            }
+
+            function renderProducts() {
+                console.log('Renderizando productos...');
+                productList.innerHTML = '';
+                products.forEach(product => {
+                    let sizeSelector = '';
+                    if (product.sizes && product.sizes.length > 0) {
+                        const options = product.sizes.map(size => `<option value="${size}">${size}</option>`).join('');
+                        sizeSelector = `
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="size-select-${product.id}">Medida</label>
+                                <select class="form-select" id="size-select-${product.id}">
+                                    ${options}
+                                </select>
+                            </div>
+                        `;
+                    }
+
+                    const productCard = `
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="imagenes/${product.image}" class="card-img-top" alt="${product.name}">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">${product.name}</h5>
+                                    <p class="card-text">${product.description}</p>
+                                    ${sizeSelector}
+                                    <p class="card-text mt-auto"><strong>Precio:</strong> $${product.price.toLocaleString('es-CO')} COP</p>
+                                    <button class="btn btn-primary add-to-cart-btn" data-id="${product.id}">Añadir al Carrito</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    productList.innerHTML += productCard;
+                });
+                console.log('Productos renderizados.');
+            }
+
+            function addToCart(productId) {
+                const product = products.find(p => p.id === productId);
+                const sizeSelect = document.getElementById(`size-select-${productId}`);
+                const selectedSize = sizeSelect ? sizeSelect.value : null;
+                
+                const cartItemId = selectedSize ? `${productId}-${selectedSize}` : productId.toString();
+                const cartItem = cart.find(item => item.cartId === cartItemId);
+
+                if (cartItem) {
+                    cartItem.quantity++;
+                } else {
+                    cart.push({ ...product, quantity: 1, size: selectedSize, cartId: cartItemId });
+                }
+
+                updateCart();
+            }
+
+            function updateCart() {
+                saveCart();
+                renderCartItems();
+                updateCartCount();
+                updateCartTotal();
+            }
+
+            function renderCartItems() {
+                cartBody.innerHTML = '';
+                if (cart.length === 0) {
+                    cartBody.innerHTML = '<p>Tu carrito está vacío.</p>';
+                    return;
+                }
+
+                const table = document.createElement('table');
+                table.classList.add('table');
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                `;
+
+                const tbody = table.querySelector('tbody');
+                cart.forEach(item => {
+                    const subtotal = item.price * item.quantity;
+                    const productName = item.size ? `${item.name} (${item.size})` : item.name;
+                    const row = `
+                        <tr>
+                            <td>${productName}</td>
+                            <td>$${item.price.toLocaleString('es-CO')}</td>
+                            <td>
+                                <input type="number" class="form-control quantity-input" value="${item.quantity}" min="1" data-cart-id="${item.cartId}" style="width: 70px;">
+                            </td>
+                            <td>$${subtotal.toLocaleString('es-CO')}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm remove-from-cart-btn" data-cart-id="${item.cartId}">Eliminar</button>
+                            </td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                });
+
+                cartBody.appendChild(table);
+            }
+
+            function updateCartCount() {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCount.textContent = totalItems;
+            }
+
+            function updateCartTotal() {
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                cartTotal.textContent = `$${total.toLocaleString('es-CO')}`;
+            }
+
+            function removeFromCart(cartId) {
+                cart = cart.filter(item => item.cartId !== cartId);
+                updateCart();
+            }
+
+            function updateQuantity(cartId, quantity) {
+                const cartItem = cart.find(item => item.cartId === cartId);
+                if (cartItem) {
+                    cartItem.quantity = quantity;
+                }
+                updateCart();
+            }
+
+            productList.addEventListener('click', e => {
+                if (e.target.classList.contains('add-to-cart-btn')) {
+                    const productId = parseInt(e.target.getAttribute('data-id'));
+                    addToCart(productId);
+                }
+            });
+
+            cartBody.addEventListener('click', e => {
+                if (e.target.classList.contains('remove-from-cart-btn')) {
+                    const cartId = e.target.getAttribute('data-cart-id');
+                    removeFromCart(cartId);
+                }
+            });
+
+            cartBody.addEventListener('change', e => {
+                if (e.target.classList.contains('quantity-input')) {
+                    const cartId = e.target.getAttribute('data-cart-id');
+                    const quantity = parseInt(e.target.value);
+                    if (quantity > 0) {
+                        updateQuantity(cartId, quantity);
+                    } else {
+                        removeFromCart(cartId);
+                    }
+                }
+            });
+
+            renderProducts();
+            updateCart();
+        });
+    </script>
+</body>
+</html>

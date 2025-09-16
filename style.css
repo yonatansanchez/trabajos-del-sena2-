@@ -1,0 +1,299 @@
+/* Estilos personalizados para Acero JJ */
+
+/* Importar una fuente moderna de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+/* --- Encabezado y Navegación --- */
+.navbar {
+    background-color: #0A2342 !important; /* Azul oscuro principal */
+    padding: 1rem 0;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #fff !important;
+}
+
+.nav-link {
+    color: #fff !important;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #FF8C00 !important; /* Naranja vibrante para el hover */
+}
+
+.navbar .btn-outline-light {
+    margin-left: 15px;
+    border-color: #FF8C00;
+    color: #FF8C00;
+}
+
+.navbar .btn-outline-light:hover {
+    background-color: #FF8C00;
+    color: #fff;
+}
+
+/* --- Hero Section --- */
+.hero {
+    background: linear-gradient(rgba(10, 35, 66, 0.7), rgba(10, 35, 66, 0.7)), url('https://images.unsplash.com/photo-1519692453429-d6c1urn7c5d?q=80&w=2070&auto=format&fit=crop') no-repeat center center;
+    background-size: cover;
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.hero .btn-primary {
+    background-color: #FF8C00;
+    border-color: #FF8C00;
+    font-size: 1.2rem;
+    padding: 12px 30px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.hero .btn-primary:hover {
+    background-color: #E67E00;
+    border-color: #E67E00;
+}
+
+
+/* --- Secciones --- */
+section {
+    padding: 60px 0;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #0A2342; /* Azul oscuro para los títulos */
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+/* Línea decorativa debajo de los títulos */
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #FF8C00; /* Naranja vibrante */
+    margin: 10px auto 0;
+}
+
+
+/* --- Tarjetas de Productos --- */
+.card {
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.card-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #0A2342;
+}
+
+.btn-primary {
+    background-color: #2C5D92; /* Azul secundario */
+    border-color: #2C5D92;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0A2342; /* Azul oscuro al pasar el mouse */
+    border-color: #0A2342;
+}
+
+
+/* --- Sección Sobre Nosotros --- */
+#sobre-nosotros {
+    background-color: #f8f9fa; /* Gris claro de fondo */
+}
+
+/* --- Formulario de Contacto --- */
+#contacto .form-control {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 12px;
+}
+
+#contacto .form-control:focus {
+    border-color: #2C5D92;
+    box-shadow: 0 0 0 0.25rem rgba(44, 93, 146, 0.25);
+}
+
+#contacto button[type="submit"] {
+    background-color: #FF8C00;
+    border-color: #FF8C00;
+    padding: 12px 30px;
+    font-weight: bold;
+}
+
+#contacto button[type="submit"]:hover {
+    background-color: #E67E00;
+    border-color: #E67E00;
+}
+
+
+/* --- Pie de página --- */
+footer {
+    background-color: #0A2342; /* Azul oscuro principal */
+}
+
+/* --- Página de Login --- */
+.login-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f8f9fa; /* Gris claro de fondo */
+}
+
+.login-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-box {
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-box h2 {
+    margin-bottom: 30px;
+}
+
+.login-box .form-control {
+    padding: 12px;
+}
+
+.login-box .d-grid .btn {
+    padding: 12px;
+    font-weight: bold;
+    background-color: #FF8C00;
+    border-color: #FF8C00;
+}
+
+.login-box .d-grid .btn:hover {
+    background-color: #E67E00;
+    border-color: #E67E00;
+}
+
+.login-box a {
+    color: #0A2342;
+    text-decoration: none;
+}
+
+.login-box a:hover {
+    text-decoration: underline;
+}
+
+/* --- Página de Pedidos --- */
+#pedidos .input-group-text {
+    width: 250px; /* Adjust as needed */
+    justify-content: left;
+    font-weight: bold;
+}
+
+/* --- Página de Inventario --- */
+#inventario .table {
+    font-size: 0.9rem;
+}
+
+#inventario .btn-sm {
+    margin: 0 2px;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 56px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    top: 56px;
+  }
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #333;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    color: #FF8C00;
+}
+
+.sidebar-heading {
+    font-size: .75rem;
+    text-transform: uppercase;
+}
+
+.category-title {
+    border-bottom: 2px solid #0A2342;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+/* --- Dashboard --- */
+#dashboard .card {
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#dashboard .badge {
+    font-size: 0.9rem;
+    padding: 0.5em 0.7em;
+}

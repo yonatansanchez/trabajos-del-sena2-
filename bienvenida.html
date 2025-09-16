@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenidos a Acero JJ</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            /* Relative path to the image */
+            background-image: url('imagenes/vigas.jpeg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .welcome-container {
+            text-align: center;
+            padding: 50px;
+            border-radius: 10px;
+            /* Semi-transparent white background to make text readable */
+            background-color: rgba(255, 255, 255, 0.85); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #555; /* Darker text for better contrast on the light background */
+            font-size: 1.2em;
+        }
+        .enter-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 30px;
+            background-color: #0d6efd; /* A nice blue */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.1em;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .enter-button:hover {
+            background-color: #0b5ed7; /* Darker blue on hover */
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <img src="imagenes/logo jj.png" alt="Logo Acero JJ" class="logo">
+        <h1>Bienvenidos a Acero JJ</h1>
+        <p>La solución para la construcción de tu futuro.</p>
+        <a href="login.html" class="enter-button">Entrar</a>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            window.location.href = 'login.html';
+        }, 3000); // 3000 milliseconds = 3 seconds
+    </script>
+</body>
+</html>

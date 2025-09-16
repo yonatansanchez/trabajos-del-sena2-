@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar Cotización - Acero JJ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="imagenes/logo jj.png" alt="Logo Acero JJ" style="height: 40px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="productos.html">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sobre-nosotros.html">Sobre Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacto.html">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="pedidos.html">Hacer Pedido</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-light" href="login.html">Iniciar Sesión</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5">
+        <section id="pedidos" class="mb-5">
+            <h2>Solicitar Cotización</h2>
+            <p class="text-center lead mb-4">Ingresa la cantidad de cada producto que necesitas y completa tus datos de contacto.</p>
+            
+            <form class="p-4 border rounded-3 bg-light">
+                <h3 class="mb-4">Lista de Productos</h3>
+                <div class="row g-3">
+                    
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Varilla Corrugada</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Perfil IPR (Viga)</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Perfil IPS (Viga)</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Canal Monten</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Ángulo de Acero</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Solera de Acero</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Tubo Cédula 40</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Tubo Cédula 30</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">PTR (Perfil Tubular Rectangular)</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Polín Monten</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Lámina Negra</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Lámina Galvanizada</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Lámina Antiderrapante</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Malla Electrosoldada</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Alambre Recocido</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Alambrón</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Castillo Electrosoldado</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Placa de Acero</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Viga HSS</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Redondo de Acero</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Cemento Gris</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Mortero</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Yeso</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Cal</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Arena</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Grava</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Ladrillo Rojo</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Block de Concreto</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Adhesivo para Azulejo</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Impermeabilizante</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Tubería de PVC</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Tubería de Cobre</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Panel de Yeso (Tablaroca)</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Aislante Térmico</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Clavos para Concreto</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+
+                </div>
+
+                <hr class="my-4">
+
+                <h3 class="mb-4">Datos de Contacto</h3>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="nombre" class="form-label">Nombre Completo</label>
+                        <input type="text" class="form-control" id="nombre" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="empresa" class="form-label">Empresa (Opcional)</label>
+                        <input type="text" class="form-control" id="empresa">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="telefono" class="form-label">Teléfono</label>
+                        <input type="tel" class="form-control" id="telefono" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="comentarios" class="form-label">Comentarios Adicionales</label>
+                        <textarea class="form-control" id="comentarios" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Enviar Solicitud</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white text-center p-3 mt-5">
+        <p>&copy; 2025 Acero JJ. Todos los derechos reservados. | <a href="inventario.html" class="text-light">Gestión de Inventario</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
