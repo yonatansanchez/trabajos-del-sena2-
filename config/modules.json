@@ -1,0 +1,135 @@
+{
+  "project": {
+    "name": "Acero JJ - Sistema de Gestión",
+    "version": "1.0.0",
+    "description": "Sistema modular para gestión de productos de acero",
+    "activity": "GA7-220501096-AA3-EV01",
+    "institution": "SENA"
+  },
+  "modules": {
+    "standalone": {
+      "description": "Módulos stand-alone con lógica de negocio",
+      "modules": [
+        {
+          "name": "authModule",
+          "file": "modules/standalone/authModule.js",
+          "description": "Gestión de autenticación y sesiones"
+        },
+        {
+          "name": "productModule",
+          "file": "modules/standalone/productModule.js",
+          "description": "Gestión del catálogo de productos"
+        },
+        {
+          "name": "inventoryModule",
+          "file": "modules/standalone/inventoryModule.js",
+          "description": "Gestión de inventario y movimientos"
+        },
+        {
+          "name": "orderModule",
+          "file": "modules/standalone/orderModule.js",
+          "description": "Gestión de pedidos y ventas"
+        },
+        {
+          "name": "customerModule",
+          "file": "modules/standalone/customerModule.js",
+          "description": "Gestión de información de clientes"
+        }
+      ]
+    },
+    "web": {
+      "description": "Módulos para aplicación web",
+      "modules": [
+        {
+          "name": "authModule",
+          "file": "modules/web/authModule.js",
+          "description": "Autenticación en el navegador"
+        },
+        {
+          "name": "productModule",
+          "file": "modules/web/productModule.js",
+          "description": "Visualización y gestión de productos en web"
+        },
+        {
+          "name": "formValidation",
+          "file": "modules/web/formValidation.js",
+          "description": "Validación de formularios"
+        }
+      ]
+    },
+    "mobile": {
+      "description": "Módulos para dispositivos móviles",
+      "modules": [
+        {
+          "name": "mobileUtilities",
+          "file": "modules/mobile/mobileUtilities.js",
+          "description": "Utilidades para dispositivos móviles"
+        },
+        {
+          "name": "touchEvents",
+          "file": "modules/mobile/touchEvents.js",
+          "description": "Manejo de eventos táctiles"
+        }
+      ]
+    },
+    "api": {
+      "description": "Capa de servicios para comunicación con backend",
+      "modules": [
+        {
+          "name": "apiService",
+          "file": "modules/api/apiService.js",
+          "description": "Servicio de API REST"
+        }
+      ]
+    }
+  },
+  "architecture": {
+    "pattern": "Modular",
+    "description": "Arquitectura modular que separa la lógica de negocio (standalone), la presentación web, las funcionalidades móviles y la capa de servicios"
+  },
+  "technologies": {
+    "frontend": ["HTML5", "CSS3", "JavaScript ES6+", "Bootstrap 5"],
+    "patterns": ["Module Pattern", "Revealing Module Pattern"],
+    "compatibility": ["Web Browsers", "Mobile Devices", "Tablets"]
+  },
+  "features": {
+    "authentication": {
+      "enabled": true,
+      "features": ["Login", "Register", "Password Recovery", "Session Management"]
+    },
+    "products": {
+      "enabled": true,
+      "features": ["CRUD Operations", "Categories", "Stock Management", "Search & Filter"]
+    },
+    "inventory": {
+      "enabled": true,
+      "features": ["Movement Tracking", "Stock Alerts", "Reports", "History"]
+    },
+    "orders": {
+      "enabled": true,
+      "features": ["Create Orders", "Status Tracking", "Cancellation", "Statistics"]
+    },
+    "customers": {
+      "enabled": true,
+      "features": ["Customer Management", "Types", "Activation/Deactivation"]
+    },
+    "mobile": {
+      "enabled": true,
+      "features": ["Responsive Design", "Touch Events", "Swipe Gestures", "Mobile Optimizations"]
+    }
+  },
+  "configuration": {
+    "api": {
+      "baseURL": "/api",
+      "timeout": 30000
+    },
+    "storage": {
+      "session": "localStorage",
+      "cart": "localStorage"
+    },
+    "validation": {
+      "passwordMinLength": 6,
+      "phoneFormat": "CO"
+    }
+  }
+}
