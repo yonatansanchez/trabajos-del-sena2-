@@ -173,7 +173,7 @@ function cargarCotizaciones() {
 
     let html = '<div class="table-responsive"><table class="table table-hover"><thead class="table-light"><tr><th>Fecha</th><th>Tipo</th><th>Dimensiones</th><th>Cantidad</th><th>Peso Total</th><th>Precio Total</th><th>Acciones</th></tr></thead><tbody>';
     
-    cotizaciones.reverse().forEach(cot => {
+    [...cotizaciones].reverse().forEach(cot => {
         const fecha = new Date(cot.fecha);
         const fechaStr = fecha.toLocaleDateString('es-MX', { 
             year: 'numeric', 
