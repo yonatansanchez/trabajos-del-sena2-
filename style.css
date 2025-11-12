@@ -9,6 +9,10 @@ body {
 }
 
 /* --- Encabezado y Navegación --- */
+header {
+    display: none; /* Oculto por defecto, se mostrará con JS si el usuario está logueado */
+}
+
 .navbar {
     background-color: #0A2342 !important; /* Azul oscuro principal */
     padding: 1rem 0;
@@ -296,4 +300,162 @@ footer {
 #dashboard .badge {
     font-size: 0.9rem;
     padding: 0.5em 0.7em;
+}
+
+#dashboard .chart-box {
+    position: relative;
+    min-height: 240px;
+}
+
+#dashboard .chart-canvas {
+    width: 100% !important;
+    height: 240px !important;
+}
+
+#dashboard .chart-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px dashed rgba(10, 35, 66, 0.18);
+    border-radius: 12px;
+    background-color: rgba(10, 35, 66, 0.04);
+    padding: 1.5rem;
+}
+
+#dashboard .chart-summary {
+    margin-top: 1rem;
+}
+
+#dashboard .chart-summary ul {
+    width: 100%;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#dashboard .chart-summary li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 0.95rem;
+}
+
+#dashboard .chart-summary li:last-child {
+    border-bottom: none;
+}
+
+/* --- Catálogo y Carrito --- */
+#catalogControls .form-control,
+#catalogControls .form-select {
+    min-height: 44px;
+}
+
+.catalog-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.category-pills .btn {
+    border-radius: 999px;
+    text-transform: capitalize;
+}
+
+.product-card {
+    position: relative;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.product-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-card .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.product-card .price-tag {
+    font-weight: 700;
+    color: #2C5D92;
+}
+
+.product-card .btn {
+    margin-top: auto;
+}
+
+.cart-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1050;
+    display: none;
+}
+
+.cart-fab .badge {
+    transform: translate(40%, -40%);
+}
+
+.cart-item-thumb {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-empty-state {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #6c757d;
+}
+
+#checkoutSummary .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.payment-card {
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+}
+
+.payment-card .form-control {
+    min-height: 48px;
+}
+
+.payment-success {
+    text-align: center;
+    padding: 2.5rem 1rem;
+}
+
+@media (max-width: 767.98px) {
+    .catalog-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cart-fab {
+        display: inline-flex;
+    }
 }

@@ -7,6 +7,7 @@
     <!-- Enlaces a Bootstrap y a la hoja de estilos personalizada -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Encabezado del Panel de Administración -->
@@ -21,19 +22,24 @@
                     <!-- Navegación principal del panel -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" href="dashboard.html">Dashboard</a>
+                            <a class="nav-link active" href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="inventario.html">Inventario</a>
+                            <a class="nav-link" href="inventario.html"><i class="fas fa-boxes"></i> Inventario</a>
                         </li>
                     </ul>
                     <!-- Navegación secundaria para salir del panel -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Volver al Sitio</a>
+                            <a class="nav-link" href="index.html"><i class="fas fa-globe"></i> Volver al Sitio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-light" href="login.html">Cerrar Sesión</a>
+                            <a class="nav-link" href="pago.html"><i class="fas fa-credit-card"></i> Pagos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-light" href="#" data-action="logout">
+                                <i class="fas fa-power-off"></i> Cerrar Sesión
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -44,69 +50,113 @@
     <!-- Contenido Principal del Dashboard -->
     <main class="container mt-5">
         <section id="dashboard" class="mb-5">
-            <h2 class="mb-4">Dashboard de Ventas</h2>
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
+                <div>
+                    <h2 class="mb-1">Dashboard de Ventas</h2>
+                    <p class="text-muted mb-0">Visión general de pedidos, ventas y rendimientos clave.</p>
+                </div>
+                <div class="d-flex flex-column flex-sm-row gap-2">
+                    <a class="btn btn-outline-secondary" href="inventario.html">
+                        <i class="fas fa-box"></i> Ir al Inventario
+                    </a>
+                    <a class="btn btn-primary" href="pedidos.html">
+                        <i class="fas fa-plus-circle"></i> Nuevo Pedido
+                    </a>
+                </div>
+            </div>
 
             <!-- Sección de Indicadores Clave de Rendimiento (KPIs) -->
-            <div class="row mb-4">
+            <div class="row g-3 mb-4">
                 <!-- Tarjeta de Ventas Totales -->
                 <div class="col-md-4">
-                    <div class="card text-center">
+                    <div class="card text-center shadow-sm h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Ventas Totales (Mes)</h5>
-                            <p class="card-text fs-4 fw-bold">$125,430.00</p>
+                            <p class="card-title text-uppercase small text-muted mb-1"><i class="fas fa-dollar-sign me-1 text-success"></i>Ventas Totales (Mes)</p>
+                            <h3 id="dashboardTotalSales" class="fw-bold mb-0">$0.00</h3>
+                            <span class="text-muted small" id="dashboardSalesDelta">Últimos 30 días</span>
                         </div>
                     </div>
                 </div>
                 <!-- Tarjeta de Pedidos del Mes -->
                 <div class="col-md-4">
-                    <div class="card text-center">
+                    <div class="card text-center shadow-sm h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Pedidos del Mes</h5>
-                            <p class="card-text fs-4 fw-bold">82</p>
+                            <p class="card-title text-uppercase small text-muted mb-1"><i class="fas fa-receipt me-1 text-primary"></i>Pedidos del Mes</p>
+                            <h3 id="dashboardTotalOrders" class="fw-bold mb-0">0</h3>
+                            <span class="text-muted small" id="dashboardOrdersDelta">Pendientes: 0</span>
                         </div>
                     </div>
                 </div>
                 <!-- Tarjeta de Ticket Promedio -->
                 <div class="col-md-4">
-                    <div class="card text-center">
+                    <div class="card text-center shadow-sm h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Ticket Promedio</h5>
-                            <p class="card-text fs-4 fw-bold">$1,530.00</p>
+                            <p class="card-title text-uppercase small text-muted mb-1"><i class="fas fa-chart-pie me-1 text-info"></i>Ticket Promedio</p>
+                            <h3 id="dashboardAverageTicket" class="fw-bold mb-0">$0.00</h3>
+                            <span class="text-muted small" id="dashboardAverageLine">Basado en pedidos completados</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Sección de Gráficos -->
-            <div class="row mb-4">
-                <!-- Gráfico de Ventas por Mes -->
-                <div class="col-md-6">
-                    <div class="card">
+            <div class="row g-3 mb-4">
+                <!-- Tendencia de ventas -->
+                <div class="col-lg-6">
+                    <div class="card h-100 shadow-sm">
                         <div class="card-body">
-                            <h5 class="card-title">Ventas por Mes</h5>
-                            <!-- Un desarrollador necesitaría una librería como Chart.js para generar este gráfico dinámicamente -->
-                            <img src="https://via.placeholder.com/600x300.png?text=Gráfico+de+Barras" class="img-fluid" alt="Ventas por Mes">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h5 class="card-title mb-0">Ventas por Mes</h5>
+                                    <small class="text-muted">Últimos 6 meses</small>
+                                </div>
+                                <span class="badge bg-primary" id="dashboardTrendBadge">Sin datos</span>
+                            </div>
+                            <div id="salesTrendContainer" class="chart-box">
+                                <canvas id="salesTrendChart" aria-label="Histórico de ventas por mes" class="chart-canvas d-none"></canvas>
+                                <div class="chart-placeholder" data-placeholder="salesTrend">
+                                    <p class="text-muted mb-0">Aún no hay suficientes datos de ventas para graficar.</p>
+                                </div>
+                            </div>
+                            <div id="salesTrendSummary" class="chart-summary"></div>
                         </div>
                     </div>
                 </div>
-                <!-- Gráfico de Ventas por Categoría -->
-                <div class="col-md-6">
-                    <div class="card">
+                <!-- Distribución por categorías -->
+                <div class="col-lg-6">
+                    <div class="card h-100 shadow-sm">
                         <div class="card-body">
-                            <h5 class="card-title">Ventas por Categoría</h5>
-                            <!-- Este gráfico también requeriría una librería de JavaScript -->
-                            <img src="https://via.placeholder.com/600x300.png?text=Gráfico+Circular" class="img-fluid" alt="Ventas por Categoría">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h5 class="card-title mb-0">Ventas por Categoría</h5>
+                                    <small class="text-muted">Comparativa por ingresos</small>
+                                </div>
+                                <span class="badge bg-secondary" id="dashboardCategoryBadge">Actual</span>
+                            </div>
+                            <div id="categoryBreakdownContainer" class="chart-box">
+                                <canvas id="categoryBreakdownChart" aria-label="Distribución de ventas por categoría" class="chart-canvas d-none"></canvas>
+                                <div class="chart-placeholder" data-placeholder="categoryBreakdown">
+                                    <p class="text-muted mb-0">Registra pedidos para analizar las categorías más vendidas.</p>
+                                </div>
+                            </div>
+                            <div id="categoryBreakdownSummary" class="chart-summary"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Sección de Pedidos Recientes -->
-            <div class="card">
+            <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">Pedidos Recientes</h5>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h5 class="card-title mb-0">Pedidos Recientes</h5>
+                            <small class="text-muted">Resumen de los últimos 10 pedidos registrados</small>
+                        </div>
+                        <span class="badge bg-info text-dark" id="dashboardPendingBadge">Sin pedidos</span>
+                    </div>
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover align-middle" id="recentOrdersTable">
                             <thead class="table-dark">
                                 <tr>
                                     <th>ID Pedido</th>
@@ -116,35 +166,12 @@
                                     <th>Estado</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <!-- Las filas de esta tabla serían generadas dinámicamente desde una base de datos -->
+                            <tbody id="recentOrdersBody">
                                 <tr>
-                                    <td>#1254</td>
-                                    <td>Constructora XYZ</td>
-                                    <td>2025-08-25</td>
-                                    <td>$5,400.00</td>
-                                    <td><span class="badge bg-success">Completado</span></td>
-                                </tr>
-                                <tr>
-                                    <td>#1253</td>
-                                    <td>Arq. Juan Pérez</td>
-                                    <td>2025-08-24</td>
-                                    <td>$2,100.00</td>
-                                    <td><span class="badge bg-success">Completado</span></td>
-                                </tr>
-                                <tr>
-                                    <td>#1252</td>
-                                    <td>Ing. Ana García</td>
-                                    <td>2025-08-23</td>
-                                    <td>$12,300.00</td>
-                                    <td><span class="badge bg-warning text-dark">Pendiente</span></td>
-                                </tr>
-                                <tr>
-                                    <td>#1251</td>
-                                    <td>Proyectos Civiles S.A.</td>
-                                    <td>2025-08-22</td>
-                                    <td>$8,750.00</td>
-                                    <td><span class="badge bg-danger">Cancelado</span></td>
+                                    <td colspan="5" class="text-center text-muted py-4">
+                                        <i class="fas fa-clipboard-list fa-2x mb-2"></i>
+                                        <p class="mb-0">No se han registrado pedidos aún.</p>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -159,7 +186,9 @@
         <p>&copy; 2025 Acero JJ. Todos los derechos reservados. | <a href="inventario.html" class="text-light">Gestión de Inventario</a></p>
     </footer>
 
-    <!-- Scripts de Bootstrap -->
+    <!-- Scripts de terceros -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js" integrity="sha384-7OrQnpAaeo/exmjq5lZx/JdNfx8d01gGnlNt+XCq9L8dsPrioulI19IpUnCAmsvJ" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

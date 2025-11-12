@@ -6,34 +6,40 @@
     <title>Productos - Acero JJ</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">Acero JJ</a>
+                <a class="navbar-brand" href="index.html">
+                    <img src="logo jj.png" alt="Logo Acero JJ" style="height: 40px;">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Inicio</a>
+                            <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="productos.html">Productos</a>
+                            <a class="nav-link active" aria-current="page" href="productos.html"><i class="fas fa-tools"></i> Productos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="sobre-nosotros.html">Sobre Nosotros</a>
+                            <a class="nav-link" href="sobre-nosotros.html"><i class="fas fa-info-circle"></i> Sobre Nosotros</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contacto.html">Contacto</a>
+                            <a class="nav-link" href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="pedidos.html">Hacer Pedido</a>
+                            <a class="nav-link" href="pedidos.html"><i class="fas fa-shopping-cart"></i> Pedidos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-light" href="login.html">Iniciar Sesión</a>
+                            <a class="nav-link" href="pago.html"><i class="fas fa-credit-card"></i> Pagos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-light" href="login.html"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
                         </li>
                     </ul>
                 </div>
@@ -41,94 +47,2572 @@
         </nav>
     </header>
 
-    <div class="container-fluid">
-        <div class="row">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <div class="position-sticky pt-3">
-                    <h4 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Categorías</span>
-                    </h4>
-                    <ul class="nav flex-column">
-                        <li class="nav-item"><a class="nav-link" href="#perfiles-acero">Perfiles de Acero</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#laminas-acero">Láminas de Acero</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#varillas-alambres">Varillas y Alambres</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#materiales-basicos">Materiales Básicos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#tuberias">Tuberías</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#paneles-aislantes">Paneles y Aislantes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#otros">Otros</a></li>
-                    </ul>
+    <main class="container py-5">
+        <section id="productos" class="mb-5">
+            <div class="d-flex flex-column flex-lg-row justify-content-between gap-3 mb-3">
+                <div>
+                    <h2 class="mb-1">Catálogo de Productos</h2>
+                    <p class="text-muted mb-0">Explora nuestro inventario en tiempo real y añade productos a tu carrito.</p>
                 </div>
-            </nav>
+                <div class="d-flex gap-2 align-items-center">
+                    <button class="btn btn-outline-light d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas">
+                        <i class="fas fa-shopping-bag text-warning"></i>
+                        <span>Ver carrito</span>
+                        <span class="badge bg-warning text-dark" id="cartBadgeCount">0</span>
+                    </button>
+                </div>
+            </div>
 
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <section id="productos" class="mb-5 pt-3">
-                    <h2 class="mb-4">Nuestro Inventario</h2>
+            <div class="catalog-toolbar" id="catalogControls">
+                <div class="input-group flex-grow-1">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    <input type="search" id="catalogSearch" class="form-control" placeholder="Buscar por nombre o categoría...">
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <label class="form-label mb-0" for="catalogSort">Ordenar por</label>
+                    <select id="catalogSort" class="form-select">
+                        <option value="name">Nombre (A-Z)</option>
+                        <option value="priceAsc">Precio menor a mayor</option>
+                        <option value="priceDesc">Precio mayor a menor</option>
+                        <option value="category">Categoría</option>
+                    </select>
+                </div>
+            </div>
 
-                    <h3 id="perfiles-acero" class="category-title">Perfiles de Acero</h3>
-                    <div class="row">
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Perfil IPR (Viga)"><div class="card-body"><h5 class="card-title">Perfil IPR (Viga)</h5><p class="card-text">Vigas de acero para estructuras principales.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Perfil IPS (Viga)"><div class="card-body"><h5 class="card-title">Perfil IPS (Viga)</h5><p class="card-text">Vigas de acero para aplicaciones diversas.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Canal Monten"><div class="card-body"><h5 class="card-title">Canal Monten</h5><p class="card-text">Perfiles para estructuras ligeras y techumbres.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Ángulo de Acero"><div class="card-body"><h5 class="card-title">Ángulo de Acero</h5><p class="card-text">Perfiles angulares para soportes y marcos.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Solera de Acero"><div class="card-body"><h5 class="card-title">Solera de Acero</h5><p class="card-text">Placas rectangulares para múltiples usos.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="PTR (Perfil Tubular Rectangular)"><div class="card-body"><h5 class="card-title">PTR (Perfil Tubular Rectangular)</h5><p class="card-text">Perfiles tubulares para estructuras y herrería.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Polín Monten"><div class="card-body"><h5 class="card-title">Polín Monten</h5><p class="card-text">Soportes para techos y cubiertas.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Viga HSS"><div class="card-body"><h5 class="card-title">Viga HSS</h5><p class="card-text">Secciones huecas estructurales de alta resistencia.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
+            <div class="category-pills mt-3" id="categoryFilters"></div>
+
+            <div class="row g-4 mt-2" id="catalogGrid">
+                <div class="col">
+            <div class="card h-100 product-card" data-product-id="1">
+                <div class="product-image-container">
+                    <img src="Lamina de Acero al Carbono.jpg" class="card-img-top" alt="Lamina de Acero al Carbono">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
                     </div>
-
-                    <h3 id="laminas-acero" class="category-title mt-5">Láminas de Acero</h3>
-                    <div class="row">
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Lámina Negra"><div class="card-body"><h5 class="card-title">Lámina Negra</h5><p class="card-text">Láminas de acero sin recubrimiento.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Lámina Galvanizada"><div class="card-body"><h5 class="card-title">Lámina Galvanizada</h5><p class="card-text">Láminas con recubrimiento de zinc para exteriores.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Lámina Antiderrapante"><div class="card-body"><h5 class="card-title">Lámina Antiderrapante</h5><p class="card-text">Láminas con relieve para pisos y plataformas.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Placa de Acero"><div class="card-body"><h5 class="card-title">Placa de Acero</h5><p class="card-text">Placas de acero de diversos espesores.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Lamina de Acero al Carbono</h5>
+                    <p class="card-text small text-muted">Laminas y Placas</p>
+                    <p class="card-text flex-grow-1">Lamina de 2mm de espesor, ideal para estructuras metalicas y construccion. Medidas: 1.2m x 2.4m.</p>
+                    <p class="h4 text-primary mb-3">$150.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
                     </div>
-
-                    <h3 id="varillas-alambres" class="category-title mt-5">Varillas y Alambres</h3>
-                    <div class="row">
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Varilla Corrugada"><div class="card-body"><h5 class="card-title">Varilla Corrugada</h5><p class="card-text">Alta resistencia para refuerzo de concreto.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Malla Electrosoldada"><div class="card-body"><h5 class="card-title">Malla Electrosoldada</h5><p class="card-text">Refuerzo de acero para concreto.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Alambre Recocido"><div class="card-body"><h5 class="card-title">Alambre Recocido</h5><p class="card-text">Alambre maleable para amarres en construcción.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Alambrón"><div class="card-body"><h5 class="card-title">Alambrón</h5><p class="card-text">Varilla de acero lisa en rollos.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Castillo Electrosoldado"><div class="card-body"><h5 class="card-title">Castillo Electrosoldado</h5><p class="card-text">Armaduras prefabricadas para columnas y castillos.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Redondo de Acero"><div class="card-body"><h5 class="card-title">Redondo de Acero</h5><p class="card-text">Barras redondas de acero para múltiples usos.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="2">
+                <div class="product-image-container">
+                    <img src="Viga de Acero IPR.jpeg" class="card-img-top" alt="Viga de Acero IPR">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
                     </div>
-
-                    <h3 id="materiales-basicos" class="category-title mt-5">Materiales Básicos</h3>
-                    <div class="row">
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Cemento Gris"><div class="card-body"><h5 class="card-title">Cemento Gris</h5><p class="card-text">Cemento Portland para uso general.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Mortero"><div class="card-body"><h5 class="card-title">Mortero</h5><p class="card-text">Mezcla lista para junteo y aplanado.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Yeso"><div class="card-body"><h5 class="card-title">Yeso</h5><p class="card-text">Yeso para recubrimientos y acabados interiores.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Cal"><div class="card-body"><h5 class="card-title">Cal</h5><p class="card-text">Cal hidratada para mezclas de albañilería.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Arena"><div class="card-body"><h5 class="card-title">Arena</h5><p class="card-text">Arena de río para mezclas de concreto y mortero.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Grava"><div class="card-body"><h5 class="card-title">Grava</h5><p class="card-text">Grava triturada para concretos de alta resistencia.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Ladrillo Rojo"><div class="card-body"><h5 class="card-title">Ladrillo Rojo</h5><p class="card-text">Ladrillo recocido para muros y bardas.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Block de Concreto"><div class="card-body"><h5 class="card-title">Block de Concreto</h5><p class="card-text">Blocks huecos y sólidos para mampostería.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Viga de Acero IPR</h5>
+                    <p class="card-text small text-muted">Perfiles Estructurales</p>
+                    <p class="card-text flex-grow-1">Viga estructural IPR de 6 pulgadas. Alta resistencia para soportar grandes cargas. Longitud: 6m.</p>
+                    <p class="h4 text-primary mb-3">$450.50 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
                     </div>
-
-                    <h3 id="tuberias" class="category-title mt-5">Tuberías</h3>
-                    <div class="row">
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Tubo Cédula 40"><div class="card-body"><h5 class="card-title">Tubo Cédula 40</h5><p class="card-text">Tubería de acero de alta presión.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Tubo Cédula 30"><div class="card-body"><h5 class="card-title">Tubo Cédula 30</h5><p class="card-text">Tubería de acero de presión estándar.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Tubería de PVC"><div class="card-body"><h5 class="card-title">Tubería de PVC</h5><p class="card-text">Tubería para instalaciones sanitarias e hidráulicas.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Tubería de Cobre"><div class="card-body"><h5 class="card-title">Tubería de Cobre</h5><p class="card-text">Tubería para instalaciones de gas y agua caliente.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="3">
+                <div class="product-image-container">
+                    <img src="Angulo de Acero Estructural.jpeg" class="card-img-top" alt="Angulo de Acero Estructural">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
                     </div>
-
-                    <h3 id="paneles-aislantes" class="category-title mt-5">Paneles y Aislantes</h3>
-                    <div class="row">
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Panel de Yeso (Tablaroca)"><div class="card-body"><h5 class="card-title">Panel de Yeso (Tablaroca)</h5><p class="card-text">Paneles de yeso para muros y plafones divisorios.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Aislante Térmico"><div class="card-body"><h5 class="card-title">Aislante Térmico</h5><p class="card-text">Aislantes de fibra de vidrio para techos y muros.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Angulo de Acero Estructural</h5>
+                    <p class="card-text small text-muted">Perfiles Estructurales</p>
+                    <p class="card-text flex-grow-1">Angulo de lados iguales de 3x3 pulgadas y 1/4 de espesor. Longitud: 6m.</p>
+                    <p class="h4 text-primary mb-3">$120.25 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
                     </div>
-
-                    <h3 id="otros" class="category-title mt-5">Otros</h3>
-                    <div class="row">
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Adhesivo para Azulejo"><div class="card-body"><h5 class="card-title">Adhesivo para Azulejo</h5><p class="card-text">Pegamento para pisos y azulejos cerámicos.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Impermeabilizante"><div class="card-body"><h5 class="card-title">Impermeabilizante</h5><p class="card-text">Impermeabilizantes acrílicos y asfálticos.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
-                        <div class="col-md-4 mb-4"><div class="card"><img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Clavos para Concreto"><div class="card-body"><h5 class="card-title">Clavos para Concreto</h5><p class="card-text">Clavos de acero templado para fijación en concreto.</p><a href="#" class="btn btn-primary">Cotizar</a></div></div></div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="4">
+                <div class="product-image-container">
+                    <img src="Perfil Monten (Polin).jpeg" class="card-img-top" alt="Perfil Monten (Polin)">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
                     </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Perfil Monten (Polin)</h5>
+                    <p class="card-text small text-muted">Perfiles Estructurales</p>
+                    <p class="card-text flex-grow-1">Perfil Monten de 4 pulgadas, calibre 14. Utilizado comunmente para techados y estructuras ligeras.</p>
+                    <p class="h4 text-primary mb-3">$95.50 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="5">
+                <div class="product-image-container">
+                    <img src="Canal CPS (Viga U).jpeg" class="card-img-top" alt="Canal CPS (Viga U)">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Canal CPS (Viga U)</h5>
+                    <p class="card-text small text-muted">Perfiles Estructurales</p>
+                    <p class="card-text flex-grow-1">Canal estructural en forma de U, de 4 pulgadas. Ideal para marcos y soportes. Longitud: 6m.</p>
+                    <p class="h4 text-primary mb-3">$180.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="6">
+                <div class="product-image-container">
+                    <img src="Viga IPS.jpg" class="card-img-top" alt="Viga IPS">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Viga IPS</h5>
+                    <p class="card-text small text-muted">Perfiles Estructurales</p>
+                    <p class="card-text flex-grow-1">Viga de acero estructural tipo IPS de 5 pulgadas. Usada en construccion de edificios y puentes. Longitud: 6m.</p>
+                    <p class="h4 text-primary mb-3">$390.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="7">
+                <div class="product-image-container">
+                    <img src="Perfil HSS.webp" class="card-img-top" alt="Perfil HSS">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Perfil HSS</h5>
+                    <p class="card-text small text-muted">Perfiles Estructurales</p>
+                    <p class="card-text flex-grow-1">Perfil tubular estructural (Hollow Structural Section) cuadrado de 4x4 pulgadas, calibre 11. Longitud: 6m.</p>
+                    <p class="h4 text-primary mb-3">$250.80 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="8">
+                <div class="product-image-container">
+                    <img src="Placa de Acero Antidesgaste.jpeg" class="card-img-top" alt="Placa de Acero Antidesgaste">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Placa de Acero Antidesgaste</h5>
+                    <p class="card-text small text-muted">Laminas y Placas</p>
+                    <p class="card-text flex-grow-1">Placa de alta dureza (AR400) de 1/2 pulgada de espesor. Perfecta para maquinaria pesada.</p>
+                    <p class="h4 text-primary mb-3">$820.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="9">
+                <div class="product-image-container">
+                    <img src="Lamina Galvanizada.jpeg" class="card-img-top" alt="Lamina Galvanizada">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Lamina Galvanizada</h5>
+                    <p class="card-text small text-muted">Laminas y Placas</p>
+                    <p class="card-text flex-grow-1">Lamina recubierta de zinc para proteccion contra la corrosion. Calibre 26. Medidas: 0.91m x 3.05m.</p>
+                    <p class="h4 text-primary mb-3">$89.99 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="10">
+                <div class="product-image-container">
+                    <img src="Lamina Antiderrapante.jpeg" class="card-img-top" alt="Lamina Antiderrapante">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Lamina Antiderrapante</h5>
+                    <p class="card-text small text-muted">Laminas y Placas</p>
+                    <p class="card-text flex-grow-1">Lamina con patron de diamante para pisos y escaleras. Espesor 3mm. Medidas: 1.22m x 2.44m.</p>
+                    <p class="h4 text-primary mb-3">$210.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="11">
+                <div class="product-image-container">
+                    <img src="Lamina de Acero Inoxidable 304.jpeg" class="card-img-top" alt="Lamina de Acero Inoxidable 304">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Lamina de Acero Inoxidable 304</h5>
+                    <p class="card-text small text-muted">Laminas y Placas</p>
+                    <p class="card-text flex-grow-1">Lamina de acero inoxidable tipo 304, acabado P3. Espesor 1.5mm. Medidas: 1.22m x 2.44m.</p>
+                    <p class="h4 text-primary mb-3">$450.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="12">
+                <div class="product-image-container">
+                    <img src="Lamina Pintro.webp" class="card-img-top" alt="Lamina Pintro">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Lamina Pintro</h5>
+                    <p class="card-text small text-muted">Laminas y Placas</p>
+                    <p class="card-text flex-grow-1">Lamina de acero galvanizada y pintada, color blanco. Calibre 26. Ideal para techos y fachadas.</p>
+                    <p class="h4 text-primary mb-3">$110.50 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="13">
+                <div class="product-image-container">
+                    <img src="Tubo de Acero Inoxidable.jpeg" class="card-img-top" alt="Tubo de Acero Inoxidable">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Tubo de Acero Inoxidable</h5>
+                    <p class="card-text small text-muted">Tuberia</p>
+                    <p class="card-text flex-grow-1">Tubo redondo de 1.5 pulgadas de diametro. Acabado pulido, resistente a la corrosion.</p>
+                    <p class="h4 text-primary mb-3">$85.75 / m</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="14">
+                <div class="product-image-container">
+                    <img src="Tubo Cedula 40.jpeg" class="card-img-top" alt="Tubo Cedula 40">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Tubo Cedula 40</h5>
+                    <p class="card-text small text-muted">Tuberia</p>
+                    <p class="card-text flex-grow-1">Tubo de acero al carbono sin costura, Cedula 40, de 2 pulgadas de diametro. Longitud: 6.4m.</p>
+                    <p class="h4 text-primary mb-3">$190.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="15">
+                <div class="product-image-container">
+                    <img src="Tubo Cuadrado (PTR).jpg" class="card-img-top" alt="Tubo Cuadrado (PTR)">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Tubo Cuadrado (PTR)</h5>
+                    <p class="card-text small text-muted">Tuberia</p>
+                    <p class="card-text flex-grow-1">Perfil Tubular Rectangular (PTR) de 2x2 pulgadas, calibre 14. Longitud: 6m.</p>
+                    <p class="h4 text-primary mb-3">$130.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="16">
+                <div class="product-image-container">
+                    <img src="Tubo Galvanizado.png" class="card-img-top" alt="Tubo Galvanizado">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Tubo Galvanizado</h5>
+                    <p class="card-text small text-muted">Tuberia</p>
+                    <p class="card-text flex-grow-1">Tubo de acero con recubrimiento galvanizado para agua potable. Diametro 1 pulgada. Longitud: 6.4m.</p>
+                    <p class="h4 text-primary mb-3">$98.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="17">
+                <div class="product-image-container">
+                    <img src="Tubo para Andamio.avif" class="card-img-top" alt="Tubo para Andamio">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Tubo para Andamio</h5>
+                    <p class="card-text small text-muted">Tuberia</p>
+                    <p class="card-text flex-grow-1">Tubo de acero de alta resistencia para construccion de andamios. Diametro 1 1/2 pulgadas.</p>
+                    <p class="h4 text-primary mb-3">$155.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="18">
+                <div class="product-image-container">
+                    <img src="Varilla Corrugada G-42.jpg" class="card-img-top" alt="Varilla Corrugada G-42">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Varilla Corrugada G-42</h5>
+                    <p class="card-text small text-muted">Varillas y Mallas</p>
+                    <p class="card-text flex-grow-1">Varilla de acero para refuerzo de concreto, grado 42. Diametro 3/8 pulgadas. Tramo de 12m.</p>
+                    <p class="h4 text-primary mb-3">$45.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="19">
+                <div class="product-image-container">
+                    <img src="Varilla Corrugada G-60.jpeg" class="card-img-top" alt="Varilla Corrugada G-60">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Varilla Corrugada G-60</h5>
+                    <p class="card-text small text-muted">Varillas y Mallas</p>
+                    <p class="card-text flex-grow-1">Varilla de acero de alta resistencia, grado 60. Diametro 1/2 pulgada. Tramo de 12m.</p>
+                    <p class="h4 text-primary mb-3">$78.50 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="20">
+                <div class="product-image-container">
+                    <img src="Malla Electrosoldada 6x6-10-10.webp" class="card-img-top" alt="Malla Electrosoldada 6x6-10/10">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Malla Electrosoldada 6x6-10/10</h5>
+                    <p class="card-text small text-muted">Varillas y Mallas</p>
+                    <p class="card-text flex-grow-1">Malla para refuerzo de concreto en pisos y losas. Rollo de 100m2.</p>
+                    <p class="h4 text-primary mb-3">$950.00 / rollo</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="21">
+                <div class="product-image-container">
+                    <img src="Castillo Electrosoldado.jpeg" class="card-img-top" alt="Castillo Electrosoldado">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Castillo Electrosoldado</h5>
+                    <p class="card-text small text-muted">Varillas y Mallas</p>
+                    <p class="card-text flex-grow-1">Armadura prefabricada para castillos y columnas de 15x15 cm. Tramo de 6m.</p>
+                    <p class="h4 text-primary mb-3">$115.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="22">
+                <div class="product-image-container">
+                    <img src="Alambre Recocido.jpeg" class="card-img-top" alt="Alambre Recocido">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Alambre Recocido</h5>
+                    <p class="card-text small text-muted">Varillas y Mallas</p>
+                    <p class="card-text flex-grow-1">Alambre de acero suave para amarres en construccion. Calibre 16.</p>
+                    <p class="h4 text-primary mb-3">$35.00 / kg</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="23">
+                <div class="product-image-container">
+                    <img src="Alambre de Puas.jpeg" class="card-img-top" alt="Alambre de Puas">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Alambre de Puas</h5>
+                    <p class="card-text small text-muted">Varillas y Mallas</p>
+                    <p class="card-text flex-grow-1">Alambre con puas para cercos perimetrales. Rollo de 300m.</p>
+                    <p class="h4 text-primary mb-3">$420.00 / rollo</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="24">
+                <div class="product-image-container">
+                    <img src="Alambron.jpg" class="card-img-top" alt="Alambron">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Alambron</h5>
+                    <p class="card-text small text-muted">Varillas y Mallas</p>
+                    <p class="card-text flex-grow-1">Rollo de alambron de 1/4 de pulgada para construccion.</p>
+                    <p class="h4 text-primary mb-3">$1200.00 / rollo</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="25">
+                <div class="product-image-container">
+                    <img src="Tornillo Autoperforante.jpg" class="card-img-top" alt="Tornillo Autoperforante">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Tornillo Autoperforante</h5>
+                    <p class="card-text small text-muted">Tornilleria y Fijaciones</p>
+                    <p class="card-text flex-grow-1">Tornillo cabeza hexagonal con punta de broca. Medida 1/4" x 1". Caja con 100 pzs.</p>
+                    <p class="h4 text-primary mb-3">$85.00 / caja</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="26">
+                <div class="product-image-container">
+                    <img src="Anclaje de Expansion.jpeg" class="card-img-top" alt="Anclaje de Expansion">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Anclaje de Expansion</h5>
+                    <p class="card-text small text-muted">Tornilleria y Fijaciones</p>
+                    <p class="card-text flex-grow-1">Anclaje tipo cuna de 3/8" x 3". Para fijacion en concreto.</p>
+                    <p class="h4 text-primary mb-3">$12.50 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="27">
+                <div class="product-image-container">
+                    <img src="Varilla Roscada.jpeg" class="card-img-top" alt="Varilla Roscada">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Varilla Roscada</h5>
+                    <p class="card-text small text-muted">Tornilleria y Fijaciones</p>
+                    <p class="card-text flex-grow-1">Varilla de acero completamente roscada de 1/2 pulgada. Longitud: 1m.</p>
+                    <p class="h4 text-primary mb-3">$35.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="28">
+                <div class="product-image-container">
+                    <img src="Tuerca Hexagonal.jpeg" class="card-img-top" alt="Tuerca Hexagonal">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Tuerca Hexagonal</h5>
+                    <p class="card-text small text-muted">Tornilleria y Fijaciones</p>
+                    <p class="card-text flex-grow-1">Tuerca estandar de 1/2 pulgada, grado 2. Caja con 100 pzs.</p>
+                    <p class="h4 text-primary mb-3">$60.00 / caja</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="29">
+                <div class="product-image-container">
+                    <img src="Pija para Tablaroca.jpg" class="card-img-top" alt="Pija para Tablaroca">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Pija para Tablaroca</h5>
+                    <p class="card-text small text-muted">Tornilleria y Fijaciones</p>
+                    <p class="card-text flex-grow-1">Pija de punta fina para fijacion de paneles de yeso. Medida #6 x 1 1/8". Caja con 100 pzs.</p>
+                    <p class="h4 text-primary mb-3">$45.00 / caja</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="30">
+                <div class="product-image-container">
+                    <img src="Clavo para Concreto.jpg" class="card-img-top" alt="Clavo para Concreto">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Clavo para Concreto</h5>
+                    <p class="card-text small text-muted">Tornilleria y Fijaciones</p>
+                    <p class="card-text flex-grow-1">Clavo de acero templado de 2 pulgadas. Caja de 1kg.</p>
+                    <p class="h4 text-primary mb-3">$55.00 / caja</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="31">
+                <div class="product-image-container">
+                    <img src="Cemento Gris Portland.jpg" class="card-img-top" alt="Cemento Gris Portland">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Cemento Gris Portland</h5>
+                    <p class="card-text small text-muted">Cementos y Agregados</p>
+                    <p class="card-text flex-grow-1">Bulto de cemento gris tipo CPC 30R. Contenido 50 kg.</p>
+                    <p class="h4 text-primary mb-3">$250.00 / bulto</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="32">
+                <div class="product-image-container">
+                    <img src="Mortero.avif" class="card-img-top" alt="Mortero">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Mortero</h5>
+                    <p class="card-text small text-muted">Cementos y Agregados</p>
+                    <p class="card-text flex-grow-1">Bulto de mortero para junteo y aplanado. Contenido 50 kg.</p>
+                    <p class="h4 text-primary mb-3">$220.00 / bulto</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="33">
+                <div class="product-image-container">
+                    <img src="Yeso.jpeg" class="card-img-top" alt="Yeso">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Yeso</h5>
+                    <p class="card-text small text-muted">Cementos y Agregados</p>
+                    <p class="card-text flex-grow-1">Bulto de yeso para construccion. Contenido 40 kg.</p>
+                    <p class="h4 text-primary mb-3">$150.00 / bulto</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="34">
+                <div class="product-image-container">
+                    <img src="Arena.jpeg" class="card-img-top" alt="Arena">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Arena</h5>
+                    <p class="card-text small text-muted">Cementos y Agregados</p>
+                    <p class="card-text flex-grow-1">Metro cubico de arena para construccion.</p>
+                    <p class="h4 text-primary mb-3">$400.00 / m3</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="35">
+                <div class="product-image-container">
+                    <img src="Grava.jpeg" class="card-img-top" alt="Grava">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Grava</h5>
+                    <p class="card-text small text-muted">Cementos y Agregados</p>
+                    <p class="card-text flex-grow-1">Metro cubico de grava de 3/4 de pulgada.</p>
+                    <p class="h4 text-primary mb-3">$450.00 / m3</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="36">
+                <div class="product-image-container">
+                    <img src="Cal Hidratada.jpeg" class="card-img-top" alt="Cal Hidratada">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Cal Hidratada</h5>
+                    <p class="card-text small text-muted">Cementos y Agregados</p>
+                    <p class="card-text flex-grow-1">Bulto de cal para construccion. Contenido 25 kg.</p>
+                    <p class="h4 text-primary mb-3">$90.00 / bulto</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="37">
+                <div class="product-image-container">
+                    <img src="Disco de Corte para Metal.jpg" class="card-img-top" alt="Disco de Corte para Metal">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Disco de Corte para Metal</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Disco abrasivo de 4 1/2 pulgadas para corte de metal.</p>
+                    <p class="h4 text-primary mb-3">$25.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="38">
+                <div class="product-image-container">
+                    <img src="Electrodo para Soldar 6013.jpeg" class="card-img-top" alt="Electrodo para Soldar 6013">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Electrodo para Soldar 6013</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Electrodo para soldadura de acero al carbono, 1/8". Caja de 1kg.</p>
+                    <p class="h4 text-primary mb-3">$95.00 / caja</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="39">
+                <div class="product-image-container">
+                    <img src="Cinta Metrica 8m.webp" class="card-img-top" alt="Cinta Metrica 8m">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Cinta Metrica 8m</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Cinta metrica de acero, con carcasa de alta resistencia. Longitud 8m.</p>
+                    <p class="h4 text-primary mb-3">$180.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="40">
+                <div class="product-image-container">
+                    <img src="Pala Cuadrada.jpeg" class="card-img-top" alt="Pala Cuadrada">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Pala Cuadrada</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Pala de acero con mango de madera. Ideal para mover materiales.</p>
+                    <p class="h4 text-primary mb-3">$250.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="41">
+                <div class="product-image-container">
+                    <img src="Carretilla 5.5 ft3.jpeg" class="card-img-top" alt="Carretilla 5.5 ft3">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Carretilla 5.5 ft3</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Carretilla de obra con llanta neumatica y capacidad de 5.5 pies cubicos.</p>
+                    <p class="h4 text-primary mb-3">$1200.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="42">
+                <div class="product-image-container">
+                    <img src="Nivel de Gota 24.jpeg" class="card-img-top" alt="Nivel de Gota 24">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Nivel de Gota 24"</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Nivel de aluminio de 24 pulgadas con 3 gotas.</p>
+                    <p class="h4 text-primary mb-3">$350.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="43">
+                <div class="product-image-container">
+                    <img src="Guantes de Carnaza.jpeg" class="card-img-top" alt="Guantes de Carnaza">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Guantes de Carnaza</h5>
+                    <p class="card-text small text-muted">Seguridad Industrial</p>
+                    <p class="card-text flex-grow-1">Par de guantes de carnaza para proteccion en trabajos pesados.</p>
+                    <p class="h4 text-primary mb-3">$65.00 / par</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="44">
+                <div class="product-image-container">
+                    <img src="Lentes de Seguridad.jpg" class="card-img-top" alt="Lentes de Seguridad">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Lentes de Seguridad</h5>
+                    <p class="card-text small text-muted">Seguridad Industrial</p>
+                    <p class="card-text flex-grow-1">Lentes de policarbonato con proteccion UV y anti-rayaduras.</p>
+                    <p class="h4 text-primary mb-3">$45.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="45">
+                <div class="product-image-container">
+                    <img src="Casco de Seguridad.jpg" class="card-img-top" alt="Casco de Seguridad">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Casco de Seguridad</h5>
+                    <p class="card-text small text-muted">Seguridad Industrial</p>
+                    <p class="card-text flex-grow-1">Casco de proteccion color blanco, con ajuste de matraca.</p>
+                    <p class="h4 text-primary mb-3">$150.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="46">
+                <div class="product-image-container">
+                    <img src="Arnes de Seguridad.jpg" class="card-img-top" alt="Arnes de Seguridad">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Arnes de Seguridad</h5>
+                    <p class="card-text small text-muted">Seguridad Industrial</p>
+                    <p class="card-text flex-grow-1">Arnes de cuerpo completo con 1 anillo en D. Para trabajos en altura.</p>
+                    <p class="h4 text-primary mb-3">$950.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="47">
+                <div class="product-image-container">
+                    <img src="Botas de Seguridad.jpg" class="card-img-top" alt="Botas de Seguridad">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Botas de Seguridad</h5>
+                    <p class="card-text small text-muted">Seguridad Industrial</p>
+                    <p class="card-text flex-grow-1">Botas con casquillo de acero, dielectricas. Talla 27 MX.</p>
+                    <p class="h4 text-primary mb-3">$850.00 / par</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="48">
+                <div class="product-image-container">
+                    <img src="Chaleco de Seguridad.webp" class="card-img-top" alt="Chaleco de Seguridad">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Chaleco de Seguridad</h5>
+                    <p class="card-text small text-muted">Seguridad Industrial</p>
+                    <p class="card-text flex-grow-1">Chaleco tipo brigadista color naranja con reflejantes.</p>
+                    <p class="h4 text-primary mb-3">$120.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="49">
+                <div class="product-image-container">
+                    <img src="Panel de Yeso (Tablaroca).jpg" class="card-img-top" alt="Panel de Yeso (Tablaroca)">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Panel de Yeso (Tablaroca)</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Panel de yeso estandar de 1/2 pulgada. Medidas: 1.22m x 2.44m.</p>
+                    <p class="h4 text-primary mb-3">$160.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="50">
+                <div class="product-image-container">
+                    <img src="Aislante Termico.jpeg" class="card-img-top" alt="Aislante Termico">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Aislante Termico</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Rollo de aislante de fibra de vidrio. R-11. Cubre 13 m2.</p>
+                    <p class="h4 text-primary mb-3">$750.00 / rollo</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="51">
+                <div class="product-image-container">
+                    <img src="Impermeabilizante Acrilico.png" class="card-img-top" alt="Impermeabilizante Acrilico">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Impermeabilizante Acrilico</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Cubeta de impermeabilizante elastomerico rojo, 5 anos. 19 L.</p>
+                    <p class="h4 text-primary mb-3">$980.00 / cubeta</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="52">
+                <div class="product-image-container">
+                    <img src="Sellador de Poliuretano.jpg" class="card-img-top" alt="Sellador de Poliuretano">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Sellador de Poliuretano</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Cartucho de sellador elastico de poliuretano para juntas. Color gris. 300 ml.</p>
+                    <p class="h4 text-primary mb-3">$130.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="53">
+                <div class="product-image-container">
+                    <img src="Panel W.jpg" class="card-img-top" alt="Panel W">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Panel W</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Panel estructural de poliestireno y malla de acero. Para muros y losas.</p>
+                    <p class="h4 text-primary mb-3">$450.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="54">
+                <div class="product-image-container">
+                    <img src="Escalera de Tijera.jpg" class="card-img-top" alt="Escalera de Tijera">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Escalera de Tijera</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Escalera de aluminio tipo tijera, 6 escalones.</p>
+                    <p class="h4 text-primary mb-3">$1500.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="55">
+                <div class="product-image-container">
+                    <img src="Cimbra Metalica.jpeg" class="card-img-top" alt="Cimbra Metalica">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Cimbra Metalica</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Panel para cimbra metalica modular. Medidas: 50cm x 100cm.</p>
+                    <p class="h4 text-primary mb-3">$800.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="56">
+                <div class="product-image-container">
+                    <img src="Puntal Metalico.jpeg" class="card-img-top" alt="Puntal Metalico">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Puntal Metalico</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Puntal telescopico de acero, ajustable de 3 a 5 metros.</p>
+                    <p class="h4 text-primary mb-3">$600.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="57">
+                <div class="product-image-container">
+                    <img src="Reja de Acero.jpeg" class="card-img-top" alt="Reja de Acero">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Reja de Acero</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Panel de reja de acero tipo europeo, 2.5m de ancho x 2m de alto.</p>
+                    <p class="h4 text-primary mb-3">$1300.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="58">
+                <div class="product-image-container">
+                    <img src="Poste para Reja.jpg" class="card-img-top" alt="Poste para Reja">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Poste para Reja</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Poste de acero para instalacion de reja europea, 2.5m de alto.</p>
+                    <p class="h4 text-primary mb-3">$350.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="59">
+                <div class="product-image-container">
+                    <img src="Malla Ciclonica.jpeg" class="card-img-top" alt="Malla Ciclonica">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Malla Ciclonica</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Rollo de malla ciclonica galvanizada, 2m de alto x 20m de largo.</p>
+                    <p class="h4 text-primary mb-3">$1800.00 / rollo</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="60">
+                <div class="product-image-container">
+                    <img src="Cinta para Juntas.jpg" class="card-img-top" alt="Cinta para Juntas">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Cinta para Juntas</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Cinta de papel para tratamiento de juntas en paneles de yeso. Rollo de 76m.</p>
+                    <p class="h4 text-primary mb-3">$40.00 / rollo</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="61">
+                <div class="product-image-container">
+                    <img src="Compuesto para Juntas.jpeg" class="card-img-top" alt="Compuesto para Juntas">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Compuesto para Juntas</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Caja de compuesto para juntas (Redimix). 21.8 kg.</p>
+                    <p class="h4 text-primary mb-3">$350.00 / caja</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="62">
+                <div class="product-image-container">
+                    <img src="Tornillo Estructural A325.jpg" class="card-img-top" alt="Tornillo Estructural A325">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Tornillo Estructural A325</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Tornillo de alta resistencia A325 de 3/4" x 2".</p>
+                    <p class="h4 text-primary mb-3">$25.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="63">
+                <div class="product-image-container">
+                    <img src="Placa de Conexion.webp" class="card-img-top" alt="Placa de Conexion">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Placa de Conexion</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Placa de acero de 1/2" para conexiones estructurales. Medidas: 20cm x 20cm.</p>
+                    <p class="h4 text-primary mb-3">$90.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="64">
+                <div class="product-image-container">
+                    <img src="Grout sin Contraccion.jpg" class="card-img-top" alt="Grout sin Contraccion">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Grout sin Contraccion</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Saco de Grout (mortero sin contraccion) para anclajes y bases. 25 kg.</p>
+                    <p class="h4 text-primary mb-3">$450.00 / saco</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="65">
+                <div class="product-image-container">
+                    <img src="Adhesivo Epoxico.jpeg" class="card-img-top" alt="Adhesivo Epoxico">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Adhesivo Epoxico</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Adhesivo de dos componentes para anclaje de varillas en concreto.</p>
+                    <p class="h4 text-primary mb-3">$600.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="66">
+                <div class="product-image-container">
+                    <img src="Membrana de Curado.jpeg" class="card-img-top" alt="Membrana de Curado">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Membrana de Curado</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Cubeta de membrana de curado para concreto. 19 L.</p>
+                    <p class="h4 text-primary mb-3">$700.00 / cubeta</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="67">
+                <div class="product-image-container">
+                    <img src="Sonotubo.jpeg" class="card-img-top" alt="Sonotubo">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Sonotubo</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Tubo de carton para cimbra de columnas circulares. Diametro 30cm, altura 3m.</p>
+                    <p class="h4 text-primary mb-3">$320.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="68">
+                <div class="product-image-container">
+                    <img src="Geomembrana.jpeg" class="card-img-top" alt="Geomembrana">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Geomembrana</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Rollo de geomembrana de polietileno de alta densidad para impermeabilizacion.</p>
+                    <p class="h4 text-primary mb-3">$2500.00 / rollo</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="69">
+                <div class="product-image-container">
+                    <img src="Geotextil.jpeg" class="card-img-top" alt="Geotextil">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Geotextil</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Rollo de geotextil no tejido para separacion de suelos y drenaje.</p>
+                    <p class="h4 text-primary mb-3">$1800.00 / rollo</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="70">
+                <div class="product-image-container">
+                    <img src="Tubo de PVC Sanitario.jpg" class="card-img-top" alt="Tubo de PVC Sanitario">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Tubo de PVC Sanitario</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Tubo de PVC para drenaje sanitario, 4 pulgadas de diametro. Tramo de 6m.</p>
+                    <p class="h4 text-primary mb-3">$280.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="71">
+                <div class="product-image-container">
+                    <img src="Tubo de PVC Hidraulico.jpeg" class="card-img-top" alt="Tubo de PVC Hidraulico">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Tubo de PVC Hidraulico</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Tubo de PVC para conduccion de agua a presion, 1/2 pulgada. Tramo de 6m.</p>
+                    <p class="h4 text-primary mb-3">$90.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="72">
+                <div class="product-image-container">
+                    <img src="Registro Sanitario.png" class="card-img-top" alt="Registro Sanitario">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Registro Sanitario</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Registro prefabricado de polietileno para drenaje.</p>
+                    <p class="h4 text-primary mb-3">$850.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="73">
+                <div class="product-image-container">
+                    <img src="Bomba de Agua 1-2 HP.webp" class="card-img-top" alt="Bomba de Agua 1/2 HP">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Bomba de Agua 1/2 HP</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Bomba centrifuga para agua, 1/2 HP.</p>
+                    <p class="h4 text-primary mb-3">$1600.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="74">
+                <div class="product-image-container">
+                    <img src="Tinaco 1100 L.jpeg" class="card-img-top" alt="Tinaco 1100 L">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Tinaco 1100 L</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Tinaco de polietileno para almacenamiento de agua, 1100 litros.</p>
+                    <p class="h4 text-primary mb-3">$2200.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="75">
+                <div class="product-image-container">
+                    <img src="Calentador de Agua.jpg" class="card-img-top" alt="Calentador de Agua">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Calentador de Agua</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Calentador de paso (boiler) para 1 servicio.</p>
+                    <p class="h4 text-primary mb-3">$2500.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="76">
+                <div class="product-image-container">
+                    <img src="Mezcladora para Fregadero.webp" class="card-img-top" alt="Mezcladora para Fregadero">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Mezcladora para Fregadero</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Llave mezcladora para cocina, acabado cromo.</p>
+                    <p class="h4 text-primary mb-3">$900.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="77">
+                <div class="product-image-container">
+                    <img src="WC Ecologico.png" class="card-img-top" alt="WC Ecologico">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">WC Ecologico</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Inodoro de bajo consumo de agua.</p>
+                    <p class="h4 text-primary mb-3">$1800.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="78">
+                <div class="product-image-container">
+                    <img src="Pintura Vinilica Blanca.jpg" class="card-img-top" alt="Pintura Vinilica Blanca">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Pintura Vinilica Blanca</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Cubeta de pintura vinil-acrilica color blanco. 19 L.</p>
+                    <p class="h4 text-primary mb-3">$850.00 / cubeta</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="79">
+                <div class="product-image-container">
+                    <img src="Esmalte Anticorrosivo.jpg" class="card-img-top" alt="Esmalte Anticorrosivo">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Esmalte Anticorrosivo</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Litro de esmalte alquidalico para proteccion de metales. Color gris.</p>
+                    <p class="h4 text-primary mb-3">$150.00 / litro</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="80">
+                <div class="product-image-container">
+                    <img src="Brocha 4 pulgadas.jpeg" class="card-img-top" alt="Brocha 4 pulgadas">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Brocha 4 pulgadas</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Brocha de cerdas naturales para aplicacion de pintura.</p>
+                    <p class="h4 text-primary mb-3">$80.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="81">
+                <div class="product-image-container">
+                    <img src="Rodillo para Pintar 9.png" class="card-img-top" alt="Rodillo para Pintar 9">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Rodillo para Pintar 9"</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Rodillo de felpa para superficies lisas.</p>
+                    <p class="h4 text-primary mb-3">$120.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="82">
+                <div class="product-image-container">
+                    <img src="Thinner Estandar.avif" class="card-img-top" alt="Thinner Estandar">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Thinner Estandar</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Litro de solvente (thinner) para diluir pintura.</p>
+                    <p class="h4 text-primary mb-3">$60.00 / litro</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="83">
+                <div class="product-image-container">
+                    <img src="Estopa.jpeg" class="card-img-top" alt="Estopa">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Estopa</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Bolsa de estopa para limpieza. 1 kg.</p>
+                    <p class="h4 text-primary mb-3">$70.00 / bolsa</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="84">
+                <div class="product-image-container">
+                    <img src="Lija para Metal Grano 80.jpeg" class="card-img-top" alt="Lija para Metal Grano 80">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Lija para Metal Grano 80</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Pliego de lija de agua para metal, grano 80.</p>
+                    <p class="h4 text-primary mb-3">$15.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="85">
+                <div class="product-image-container">
+                    <img src="Lija para Madera Grano 120.jpg" class="card-img-top" alt="Lija para Madera Grano 120">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Lija para Madera Grano 120</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Pliego de lija para madera, grano 120.</p>
+                    <p class="h4 text-primary mb-3">$12.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="86">
+                <div class="product-image-container">
+                    <img src="Pegamento para PVC.webp" class="card-img-top" alt="Pegamento para PVC">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Pegamento para PVC</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Lata de pegamento para tuberia de PVC. 240 ml.</p>
+                    <p class="h4 text-primary mb-3">$95.00 / lata</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="87">
+                <div class="product-image-container">
+                    <img src="Cinta de Teflon.jpg" class="card-img-top" alt="Cinta de Teflon">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Cinta de Teflon</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Cinta selladora para roscas (teflon). Rollo de 1/2 pulgada.</p>
+                    <p class="h4 text-primary mb-3">$10.00 / rollo</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="88">
+                <div class="product-image-container">
+                    <img src="Silicona Transparente.webp" class="card-img-top" alt="Silicona Transparente">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Silicona Transparente</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Cartucho de sellador de silicona de uso general. Transparente. 280 ml.</p>
+                    <p class="h4 text-primary mb-3">$85.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="89">
+                <div class="product-image-container">
+                    <img src="Pistola para Calafatear.jpg" class="card-img-top" alt="Pistola para Calafatear">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Pistola para Calafatear</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Pistola de calafateo de esqueleto para cartuchos de 280-300 ml.</p>
+                    <p class="h4 text-primary mb-3">$120.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="90">
+                <div class="product-image-container">
+                    <img src="Flexómetro 5m.jpeg" class="card-img-top" alt="Flexómetro 5m">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Flexómetro 5m</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Flexómetro profesional con carcasa de goma. 5m.</p>
+                    <p class="h4 text-primary mb-3">$150.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="91">
+                <div class="product-image-container">
+                    <img src="Martillo de Uña 16 oz.jpeg" class="card-img-top" alt="Martillo de Uña 16 oz">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Martillo de Uña 16 oz</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Martillo de carpintero con uña curva. 16 oz.</p>
+                    <p class="h4 text-primary mb-3">$220.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="92">
+                <div class="product-image-container">
+                    <img src="Pinzas de Electricista 9.jpeg" class="card-img-top" alt="Pinzas de Electricista 9">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Pinzas de Electricista 9"</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Pinzas de corte y sujeción para electricista. 9 pulgadas.</p>
+                    <p class="h4 text-primary mb-3">$250.00 / unidad</p>
+                    <div class="d-flex gap-2">
+                        <input type="number" class="form-control quantity-input" value="1" min="1" style="width: 80px;">
+                        <button class="btn btn-primary add-to-cart-btn flex-grow-1">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="93">
+                <div class="product-image-container">
+                    <img src="Pinzas de Presión 10.jpg" class="card-img-top" alt="Pinzas de Presión 10">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Pinzas de Presión 10"</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Pinzas de presión con mordaza curva. 10 pulgadas.</p>
+                    <p class="h4 text-primary mb-3">$180.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="94">
+                <div class="product-image-container">
+                    <img src="Juego de Desarmadores.jpeg" class="card-img-top" alt="Juego de Desarmadores">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Juego de Desarmadores</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Juego de 6 desarmadores (3 planos, 3 de cruz).</p>
+                    <p class="h4 text-primary mb-3">$320.00 / juego</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="95">
+                <div class="product-image-container">
+                    <img src="Arco para Segueta.jpg" class="card-img-top" alt="Arco para Segueta">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Arco para Segueta</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Arco de solera para segueta de 12 pulgadas.</p>
+                    <p class="h4 text-primary mb-3">$150.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="96">
+                <div class="product-image-container">
+                    <img src="Segueta Bimetálica.jpeg" class="card-img-top" alt="Segueta Bimetálica">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Segueta Bimetálica</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Hoja de segueta bimetálica de 12", 24 TPI.</p>
+                    <p class="h4 text-primary mb-3">$20.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="97">
+                <div class="product-image-container">
+                    <img src="Taladro Rotomartillo 1-2.jpeg" class="card-img-top" alt="Taladro Rotomartillo 1/2">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Taladro Rotomartillo 1/2"</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Taladro percutor de 1/2 pulgada, 600W.</p>
+                    <p class="h4 text-primary mb-3">$1400.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="98">
+                <div class="product-image-container">
+                    <img src="Esmeriladora Angular 4 1-2.jpg" class="card-img-top" alt="Esmeriladora Angular 4 1/2">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Esmeriladora Angular 4 1/2"</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Esmeriladora (pulidora) de 4 1/2 pulgadas, 800W.</p>
+                    <p class="h4 text-primary mb-3">$1100.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="99">
+                <div class="product-image-container">
+                    <img src="Planta de Soldar 180A.webp" class="card-img-top" alt="Planta de Soldar 180A">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Planta de Soldar 180A</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Máquina de soldar por arco eléctrico, 180 Amperes.</p>
+                    <p class="h4 text-primary mb-3">$3500.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="100">
+                <div class="product-image-container">
+                    <img src="Careta para Soldar.jpg" class="card-img-top" alt="Careta para Soldar">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Careta para Soldar</h5>
+                    <p class="card-text small text-muted">Seguridad Industrial</p>
+                    <p class="card-text flex-grow-1">Careta electrónica (fotosensible) para soldar.</p>
+                    <p class="h4 text-primary mb-3">$750.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="101">
+                <div class="product-image-container">
+                    <img src="Extensión Eléctrica Uso Rudo.jpg" class="card-img-top" alt="Extensión Eléctrica Uso Rudo">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Extensión Eléctrica Uso Rudo</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Extensión de 15 metros, calibre 12.</p>
+                    <p class="h4 text-primary mb-3">$450.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="102">
+                <div class="product-image-container">
+                    <img src="Foco LED 15W.webp" class="card-img-top" alt="Foco LED 15W">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Foco LED 15W</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Foco de alta eficiencia, luz blanca. 15W.</p>
+                    <p class="h4 text-primary mb-3">$60.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="103">
+                <div class="product-image-container">
+                    <img src="Apagador Sencillo.jpeg" class="card-img-top" alt="Apagador Sencillo">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Apagador Sencillo</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Placa con apagador sencillo, color blanco.</p>
+                    <p class="h4 text-primary mb-3">$45.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="104">
+                <div class="product-image-container">
+                    <img src="Contacto Dúplex.jpeg" class="card-img-top" alt="Contacto Dúplex">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Contacto Dúplex</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Placa con contacto doble polarizado, color blanco.</p>
+                    <p class="h4 text-primary mb-3">$50.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="105">
+                <div class="product-image-container">
+                    <img src="Caja de Registro (Chalupa).webp" class="card-img-top" alt="Caja de Registro (Chalupa)">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Caja de Registro (Chalupa)</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Caja de registro metálica para instalaciones eléctricas.</p>
+                    <p class="h4 text-primary mb-3">$15.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="106">
+                <div class="product-image-container">
+                    <img src="Poliducto Naranja 1-2.webp" class="card-img-top" alt="Poliducto Naranja 1/2">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Poliducto Naranja 1/2"</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Rollo de poliducto flexible para cableado eléctrico. 50m.</p>
+                    <p class="h4 text-primary mb-3">$250.00 / rollo</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="107">
+                <div class="product-image-container">
+                    <img src="Cable THW Calibre 12.jpeg" class="card-img-top" alt="Cable THW Calibre 12">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Cable THW Calibre 12</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Rollo de cable de cobre, calibre 12. 100m. Color negro.</p>
+                    <p class="h4 text-primary mb-3">$1200.00 / rollo</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="108">
+                <div class="product-image-container">
+                    <img src="Cinta de Aislar.jpeg" class="card-img-top" alt="Cinta de Aislar">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Cinta de Aislar</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Cinta aislante de PVC. Color negro.</p>
+                    <p class="h4 text-primary mb-3">$15.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="109">
+                <div class="product-image-container">
+                    <img src="Panel de Carga (Centro de Carga).jpg" class="card-img-top" alt="Panel de Carga (Centro de Carga)">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Panel de Carga (Centro de Carga)</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Centro de carga para 2 pastillas (interruptores).</p>
+                    <p class="h4 text-primary mb-3">$220.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="110">
+                <div class="product-image-container">
+                    <img src="Interruptor Termomagnético 20A.jpg" class="card-img-top" alt="Interruptor Termomagnético 20A">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Interruptor Termomagnético 20A</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Pastilla termomagnética de 1 polo, 20 Amperes.</p>
+                    <p class="h4 text-primary mb-3">$95.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="111">
+                <div class="product-image-container">
+                    <img src="Varilla de Tierra (Copperweld).jpeg" class="card-img-top" alt="Varilla de Tierra (Copperweld)">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Varilla de Tierra (Copperweld)</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Varilla para sistema de tierras, 1.5m.</p>
+                    <p class="h4 text-primary mb-3">$180.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="112">
+                <div class="product-image-container">
+                    <img src="Conector para Varilla de Tierra.webp" class="card-img-top" alt="Conector para Varilla de Tierra">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Conector para Varilla de Tierra</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Conector mecánico para cable y varilla de tierra.</p>
+                    <p class="h4 text-primary mb-3">$35.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="113">
+                <div class="product-image-container">
+                    <img src="Soplete de Gas.jpeg" class="card-img-top" alt="Soplete de Gas">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Soplete de Gas</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Soplete con encendido electrónico para plomería.</p>
+                    <p class="h4 text-primary mb-3">$450.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="114">
+                <div class="product-image-container">
+                    <img src="Tanque de Gas Portátil.jpg" class="card-img-top" alt="Tanque de Gas Portátil">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Tanque de Gas Portátil</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Lata de gas butano/propano para soplete.</p>
+                    <p class="h4 text-primary mb-3">$85.00 / lata</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="115">
+                <div class="product-image-container">
+                    <img src="Cortador de Tubo de Cobre.jpeg" class="card-img-top" alt="Cortador de Tubo de Cobre">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Cortador de Tubo de Cobre</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Herramienta para cortar tubo de cobre de hasta 1 pulgada.</p>
+                    <p class="h4 text-primary mb-3">$220.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="116">
+                <div class="product-image-container">
+                    <img src="Llave Stilson 12.jpg" class="card-img-top" alt="Llave Stilson 12">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Llave Stilson 12"</h5>
+                    <p class="card-text small text-muted">Herramientas</p>
+                    <p class="card-text flex-grow-1">Llave para tubo (Stilson) de 12 pulgadas.</p>
+                    <p class="h4 text-primary mb-3">$350.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="117">
+                <div class="product-image-container">
+                    <img src="Cadenas de Acero 1-4.jpg" class="card-img-top" alt="Cadenas de Acero 1/4">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Cadenas de Acero 1/4"</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Cadena de eslabones de acero galvanizado. Se vende por metro.</p>
+                    <p class="h4 text-primary mb-3">$45.00 / m</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="118">
+                <div class="product-image-container">
+                    <img src="Grillete 1-2.jpeg" class="card-img-top" alt="Grillete 1/2">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Grillete 1/2"</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Grillete de acero para izaje, capacidad 2 toneladas.</p>
+                    <p class="h4 text-primary mb-3">$90.00 / unidad</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="119">
+                <div class="product-image-container">
+                    <img src="Cable de Acero 1-4.webp" class="card-img-top" alt="Cable de Acero 1/4">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Cable de Acero 1/4"</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Cable de acero galvanizado, 7x19. Se vende por metro.</p>
+                    <p class="h4 text-primary mb-3">$30.00 / m</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div><div class="col">
+            <div class="card h-100 product-card" data-product-id="120">
+                <div class="product-image-container">
+                    <img src="Abrazadera para Cable.jpg" class="card-img-top" alt="Abrazadera para Cable">
+                    <div class="product-stock bg-success text-white">
+                        <i class="fas fa-check-circle me-1"></i> En Stock
+                    </div>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Abrazadera para Cable</h5>
+                    <p class="card-text small text-muted">Adicionales</p>
+                    <p class="card-text flex-grow-1">Juego de 2 abrazaderas (perros) para cable de 1/4".</p>
+                    <p class="h4 text-primary mb-3">$25.00 / juego</p>
+                    <div class="d-grid">
+                        <button class="btn btn-primary add-to-cart-btn">
+                            <i class="fas fa-cart-plus me-2"></i>Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+        </section>
+    </main>
 
-                </section>
-            </main>
+    <button class="btn btn-primary btn-lg rounded-circle cart-fab" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="badge bg-danger" id="cartBadgeCountMobile">0</span>
+    </button>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="cartOffcanvasLabel"><i class="fas fa-shopping-cart me-2 text-primary"></i>Carrito de Compras</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column gap-3">
+            <div id="cartEmptyState" class="text-center text-muted py-5">
+                <i class="fas fa-shopping-cart fa-3x mb-3"></i>
+                <p class="mb-1">Tu carrito está vacío.</p>
+                <small>Agrega productos desde el catálogo.</small>
+            </div>
+            <div class="list-group list-group-flush" id="cartItemsList">
+                <!-- Los artículos del carrito se insertarán aquí -->
+            </div>
+            <div class="mt-auto">
+                <div class="list-group" id="cartSummary">
+                    <div class="list-group-item d-flex justify-content-between"><span>Subtotal</span><strong id="cartSubtotal">$0.00</strong></div>
+                    <div class="list-group-item d-flex justify-content-between"><span>Impuestos (19%)</span><strong id="cartTax">$0.00</strong></div>
+                    <div class="list-group-item d-flex justify-content-between"><span>Total</span><strong id="cartTotal">$0.00</strong></div>
+                </div>
+                <div class="d-grid gap-2 mt-3">
+                    <button class="btn btn-outline-secondary" id="clearCartButton" type="button">
+                        <i class="fas fa-trash-alt"></i> Vaciar carrito
+                    </button>
+                    <a class="btn btn-primary" id="goToCheckoutButton" href="pedidos.html">
+                        <i class="fas fa-file-invoice"></i> Ir a pedidos
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -137,5 +2621,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
 </body>
-</html>
+</html>          

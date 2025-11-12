@@ -3,37 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solicitar Cotización - Acero JJ</title>
+    <title>Pedidos - Acero JJ</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">Acero JJ</a>
+                <a class="navbar-brand" href="index.html">
+                    <img src="logo.png" alt="Logo Acero JJ" style="height: 40px;">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Inicio</a>
+                            <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="productos.html">Productos</a>
+                            <a class="nav-link" href="productos.html"><i class="fas fa-tools"></i> Productos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="sobre-nosotros.html">Sobre Nosotros</a>
+                            <a class="nav-link" href="sobre-nosotros.html"><i class="fas fa-info-circle"></i> Sobre Nosotros</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contacto.html">Contacto</a>
+                            <a class="nav-link" href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="pedidos.html">Hacer Pedido</a>
+                            <a class="nav-link active" aria-current="page" href="pedidos.html"><i class="fas fa-shopping-cart"></i> Pedidos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-light" href="login.html">Iniciar Sesión</a>
+                            <a class="nav-link" href="pago.html"><i class="fas fa-credit-card"></i> Pagos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-light" href="login.html"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
                         </li>
                     </ul>
                 </div>
@@ -41,83 +47,147 @@
         </nav>
     </header>
 
-    <main class="container mt-5">
+    <main class="container py-5">
         <section id="pedidos" class="mb-5">
-            <h2>Solicitar Cotización</h2>
-            <p class="text-center lead mb-4">Ingresa la cantidad de cada producto que necesitas y completa tus datos de contacto.</p>
-            
-            <form class="p-4 border rounded-3 bg-light">
-                <h3 class="mb-4">Lista de Productos</h3>
-                <div class="row g-3">
-                    
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Varilla Corrugada</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Perfil IPR (Viga)</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Perfil IPS (Viga)</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Canal Monten</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Ángulo de Acero</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Solera de Acero</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Tubo Cédula 40</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Tubo Cédula 30</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">PTR (Perfil Tubular Rectangular)</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Polín Monten</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Lámina Negra</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Lámina Galvanizada</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Lámina Antiderrapante</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Malla Electrosoldada</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Alambre Recocido</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Alambrón</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Castillo Electrosoldado</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Placa de Acero</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Viga HSS</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Redondo de Acero</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Cemento Gris</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Mortero</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Yeso</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Cal</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Arena</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Grava</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Ladrillo Rojo</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Block de Concreto</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Adhesivo para Azulejo</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Impermeabilizante</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Tubería de PVC</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Tubería de Cobre</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Panel de Yeso (Tablaroca)</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Aislante Térmico</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
-                    <div class="col-md-6"><div class="input-group mb-2"><span class="input-group-text">Clavos para Concreto</span><input type="number" class="form-control" placeholder="Cantidad" min="0"></div></div>
+            <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center gap-3 mb-4">
+                <div>
+                    <h2 class="mb-1">Resumen de Pedido</h2>
+                    <p class="text-muted mb-0">Revisa los productos agregados al carrito y completa tus datos para continuar con el pago.</p>
+                </div>
+                <a class="btn btn-outline-secondary d-flex align-items-center gap-2" href="productos.html">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Seguir comprando</span>
+                </a>
+            </div>
 
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span class="fw-semibold"><i class="fas fa-shopping-basket text-primary me-2"></i>Productos en tu carrito</span>
+                            <button class="btn btn-sm btn-outline-danger" id="checkoutClearCartBtn" type="button">
+                                <i class="fas fa-trash-alt"></i> Vaciar
+                            </button>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table align-middle mb-0" id="checkoutItemsTable">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th scope="col">Producto</th>
+                                            <th scope="col" class="text-center">Cantidad</th>
+                                            <th scope="col" class="text-end">Precio</th>
+                                            <th scope="col" class="text-end">Subtotal</th>
+                                            <th scope="col" class="text-center">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="checkoutItemsBody">
+                                        <tr id="checkoutEmptyState">
+                                            <td colspan="5" class="text-center text-muted py-4">
+                                                <i class="fas fa-box-open fa-2x mb-2"></i>
+                                                <p class="mb-0">Tu carrito está vacío. Regresa al catálogo para agregar productos.</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <span class="fw-semibold"><i class="fas fa-address-card text-primary me-2"></i>Datos del solicitante</span>
+                        </div>
+                        <div class="card-body">
+                            <form id="checkoutForm" class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="checkoutName" class="form-label">Nombre completo</label>
+                                    <input type="text" class="form-control" id="checkoutName" name="name" placeholder="Ej. Juan Pérez" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="checkoutCompany" class="form-label">Empresa (opcional)</label>
+                                    <input type="text" class="form-control" id="checkoutCompany" name="company" placeholder="Nombre de la empresa">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="checkoutEmail" class="form-label">Correo electrónico</label>
+                                    <input type="email" class="form-control" id="checkoutEmail" name="email" placeholder="tucorreo@empresa.com" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="checkoutPhone" class="form-label">Teléfono de contacto</label>
+                                    <input type="tel" class="form-control" id="checkoutPhone" name="phone" placeholder="(300) 123-4567" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="checkoutNotes" class="form-label">Notas o indicaciones</label>
+                                    <textarea class="form-control" id="checkoutNotes" name="notes" rows="3" placeholder="Ingresa detalles relevantes para tu pedido"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="1" id="saveCustomerInfo" checked>
+                                        <label class="form-check-label" for="saveCustomerInfo">
+                                            Guardar mis datos para futuros pedidos
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-arrow-right"></i> Confirmar pedido y continuar al pago
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
-                <hr class="my-4">
+                <div class="col-lg-4">
+                    <div class="card shadow-sm" id="checkoutSummary">
+                        <div class="card-header">
+                            <span class="fw-semibold"><i class="fas fa-file-invoice-dollar text-primary me-2"></i>Resumen del pedido</span>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><span>Productos</span><span id="checkoutItemsCount">0</span></li>
+                                <li class="list-group-item"><span>Subtotal</span><span id="checkoutSubtotal">$0.00</span></li>
+                                <li class="list-group-item"><span>Impuestos (19%)</span><span id="checkoutTax">$0.00</span></li>
+                                <li class="list-group-item fw-bold"><span>Total a pagar</span><span id="checkoutTotal">$0.00</span></li>
+                            </ul>
+                            <div class="alert alert-info mt-3" role="alert">
+                                <i class="fas fa-info-circle me-2"></i>El pago se realiza de forma segura en la siguiente pantalla.
+                            </div>
+                        </div>
+                    </div>
 
-                <h3 class="mb-4">Datos de Contacto</h3>
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label for="nombre" class="form-label">Nombre Completo</label>
-                        <input type="text" class="form-control" id="nombre" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="empresa" class="form-label">Empresa (Opcional)</label>
-                        <input type="text" class="form-control" id="empresa">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="email" class="form-label">Correo Electrónico</label>
-                        <input type="email" class="form-control" id="email" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="tel" class="form-control" id="telefono" required>
-                    </div>
-                    <div class="col-12">
-                        <label for="comentarios" class="form-label">Comentarios Adicionales</label>
-                        <textarea class="form-control" id="comentarios" rows="3"></textarea>
+                    <div class="card shadow-sm mt-4">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span class="fw-semibold"><i class="fas fa-clipboard-list text-primary me-2"></i>Tus pedidos recientes</span>
+                            <button class="btn btn-sm btn-outline-secondary" id="refreshOrdersBtn" type="button">
+                                <i class="fas fa-sync-alt"></i> Actualizar
+                            </button>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th scope="col">Pedido</th>
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col" class="text-end">Total</th>
+                                            <th scope="col">Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="customerOrdersBody">
+                                        <tr>
+                                            <td colspan="4" class="text-center text-muted py-4">
+                                                <i class="fas fa-receipt fa-2x mb-2"></i>
+                                                <p class="mb-0">Aún no registras pedidos. Completa tu primer pedido para verlo aquí.</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="d-grid gap-2 mt-4">
-                    <button type="submit" class="btn btn-primary btn-lg">Enviar Solicitud</button>
-                </div>
-            </form>
+            </div>
         </section>
     </main>
 
@@ -126,5 +196,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
